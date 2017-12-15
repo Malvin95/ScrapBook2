@@ -20,7 +20,9 @@ import com.mobile.apex.scrapbook21.dummy.DummyContent;
 public class MainActivity extends AppCompatActivity
     implements NavigationView.OnNavigationItemSelectedListener,
         HolidayFragment.OnListFragmentInteractionListener,
-        HomeFragment.OnHomeFragmentInteractionListener
+        HomeFragment.OnHomeFragmentInteractionListener,
+        CalendarFragment.OnCalendarFragmentInteractionListener,
+        ScrapbookFragment.OnScrapbookFragmentInteractionListener
 {
 
     @Override
@@ -47,7 +49,7 @@ public class MainActivity extends AppCompatActivity
 
         //TODO: change the Holiday fragment from being the first page, change this to Home Fragment.
         //Create a new Fragment to be placed in the activity layout
-        HolidayFragment firstFragment = new HolidayFragment();
+        HomeFragment firstFragment = new HomeFragment();
         insertDefaultFragment(firstFragment);
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -109,22 +111,28 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_home)
         {
-            // Handle the camera action
-            Toast.makeText(this, "I clicked the home option", Toast.LENGTH_LONG).show();
+            // Handle the home action.
             HomeFragment firstFragment = new HomeFragment();
                 insertDefaultFragment(firstFragment);
         }
         else if (id == R.id.nav_myHoliday)
         {
-            Toast.makeText(this, "I clicked the My Holidays option", Toast.LENGTH_LONG).show();
+            // Handle the MyHoliday action.
+            HolidayFragment firstFragment = new HolidayFragment();
+                insertDefaultFragment(firstFragment);
         }
         else if (id == R.id.nav_calender)
         {
-            Toast.makeText(this, "I clicked the calendar option", Toast.LENGTH_LONG).show();
+            // Handle the MyHoliday action.
+            Toast.makeText(this, "I clicked the Calendar option", Toast.LENGTH_LONG).show();
+            CalendarFragment firstFragment = new CalendarFragment();
+                insertDefaultFragment(firstFragment);
         }
         else if (id == R.id.nav_scrapbook)
         {
-            Toast.makeText(this, "I clicked the Scrapbook option", Toast.LENGTH_LONG).show();
+            //Toast.makeText(this, "I clicked the Scrapbook option", Toast.LENGTH_LONG).show();
+            ScrapbookFragment firstFragment = new ScrapbookFragment();
+                insertDefaultFragment(firstFragment);
         }
         else if (id == R.id.nav_worldView)
         {
@@ -160,5 +168,15 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onHomeFragmentInteraction(Uri uri) {
         Toast.makeText(this, "You clicked Home", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onCalendarFragmentInteraction(Uri uri) {
+        Toast.makeText(this,"You clicked Calendar", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onScrapbookFragmentInteraction(Uri uri) {
+        Toast.makeText(this, "You clicked Scrapbook", Toast.LENGTH_LONG).show();
     }
 }
