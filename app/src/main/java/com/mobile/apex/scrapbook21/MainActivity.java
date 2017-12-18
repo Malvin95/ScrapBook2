@@ -22,7 +22,8 @@ public class MainActivity extends AppCompatActivity
         HolidayFragment.OnListFragmentInteractionListener,
         HomeFragment.OnHomeFragmentInteractionListener,
         CalendarFragment.OnCalendarFragmentInteractionListener,
-        ScrapbookFragment.OnScrapbookFragmentInteractionListener
+        ScrapbookFragment.OnScrapbookFragmentInteractionListener,
+        EventsFragment.OnEventsFragmentInteractionListener
 {
 
     @Override
@@ -178,5 +179,10 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onScrapbookFragmentInteraction(Uri uri) {
         Toast.makeText(this, "You clicked Scrapbook", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onEventsFragmentInteraction(Uri uri) {
+        Toast.makeText(this, "You clicked Events", Toast.LENGTH_LONG).show();
     }
 }
