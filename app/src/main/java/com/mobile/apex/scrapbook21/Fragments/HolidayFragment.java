@@ -1,6 +1,7 @@
-package com.mobile.apex.scrapbook21;
+package com.mobile.apex.scrapbook21.Fragments;
 
 import android.content.Context;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -10,10 +11,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.mobile.apex.scrapbook21.MyHolidayRecyclerViewAdapter;
+import com.mobile.apex.scrapbook21.R;
 import com.mobile.apex.scrapbook21.dummy.DummyContent;
 import com.mobile.apex.scrapbook21.dummy.DummyContent.DummyItem;
-
-import java.util.List;
 
 /**
  * A fragment representing a list of Items.
@@ -105,5 +106,7 @@ public class HolidayFragment extends Fragment {
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
         void onListFragmentInteraction(DummyItem item);
+
+        void onHolidayDetialsInteraction(Uri uri);
     }
 }

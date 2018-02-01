@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.mobile.apex.scrapbook21.HolidayFragment.OnListFragmentInteractionListener;
+import com.mobile.apex.scrapbook21.Fragments.HolidayFragment.OnListFragmentInteractionListener;
 import com.mobile.apex.scrapbook21.dummy.DummyContent.DummyItem;
 
 import java.util.List;

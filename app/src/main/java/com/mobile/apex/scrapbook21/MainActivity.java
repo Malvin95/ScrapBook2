@@ -15,6 +15,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 import android.support.v4.app.Fragment;
+
+import com.mobile.apex.scrapbook21.Fragments.CalendarFragment;
+import com.mobile.apex.scrapbook21.Fragments.EventsFragment;
+import com.mobile.apex.scrapbook21.Fragments.HolidayDetailsFragment;
+import com.mobile.apex.scrapbook21.Fragments.HolidayFragment;
+import com.mobile.apex.scrapbook21.Fragments.HomeFragment;
+import com.mobile.apex.scrapbook21.Fragments.ScrapbookFragment;
 import com.mobile.apex.scrapbook21.dummy.DummyContent;
 
 public class MainActivity extends AppCompatActivity
@@ -23,7 +30,8 @@ public class MainActivity extends AppCompatActivity
         HomeFragment.OnHomeFragmentInteractionListener,
         CalendarFragment.OnCalendarFragmentInteractionListener,
         ScrapbookFragment.OnScrapbookFragmentInteractionListener,
-        EventsFragment.OnEventsFragmentInteractionListener
+        EventsFragment.OnEventsFragmentInteractionListener,
+        HolidayDetailsFragment.OnHolidayDetailsFragmentInteractionListener
 {
 
     @Override
@@ -167,6 +175,11 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
+    public void onHolidayDetialsInteraction(Uri uri) {
+
+    }
+
+    @Override
     public void onHomeFragmentInteraction(Uri uri) {
         Toast.makeText(this, "You clicked Home", Toast.LENGTH_LONG).show();
     }
@@ -184,5 +197,21 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onEventsFragmentInteraction(Uri uri) {
         Toast.makeText(this, "You clicked Events", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    //TODO: Find what this would be used by and for!
+    public void onFragmentInteraction(Uri uri) {
+        Toast.makeText(this, "You clicked Events", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onHolidayDetailsInteraction(Uri uri) {
+        Toast.makeText(this, "You clicked Events", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+
     }
 }
