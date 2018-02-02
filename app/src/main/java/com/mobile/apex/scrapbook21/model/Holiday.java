@@ -6,17 +6,19 @@ import java.io.Serializable;
  * Created by hardingm on 02/02/18.
  */
 
+//TODO: Complete the start and end date fields, uncomment the getter and setter methods for the start and end dates.
+
 public class Holiday implements Serializable {
     private String title;
     private String notes;
-    private String startDate;
-    private String endDate;
+    //private String startDate;
+    //private String endDate;
 
-    public Holiday(String t, String n, String sD, String eD) {
+    public Holiday(String t, String n) {
         setTitle(t);
         setNotes(n);
-        setStartDate(sD);
-        setEndDate(eD);
+        //setStartDate(sD);
+        //setEndDate(eD);
     }
 
     public String getTitle() {
@@ -35,6 +37,7 @@ public class Holiday implements Serializable {
         this.notes = notes;
     }
 
+    /**
     public String getStartDate() {
         return startDate;
     }
@@ -49,5 +52,5 @@ public class Holiday implements Serializable {
 
     public void setEndDate(String endDate) {
         this.endDate = endDate;
-    }
+    }*/
 }
