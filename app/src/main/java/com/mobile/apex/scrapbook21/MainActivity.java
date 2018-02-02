@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -172,11 +173,24 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onListFragmentInteraction(DummyContent.DummyItem item){
         Toast.makeText(this, "You clicked " + item.toString(), Toast.LENGTH_LONG).show();
-    }
+        //Create the new fragment
+        HolidayDetailsFragment newFragment = new HolidayDetailsFragment();
+        // add an argument specifying the item it should show
+        // note that the DummyItem class must implement Serializable
+        Bundle args = new Bundle();
+        args.putSerializable("Item", item);
+        newFragment.setArguments(args);
 
-    @Override
-    public void onHolidayDetialsInteraction(Uri uri) {
+        FragmentTransaction transaction =
+                getSupportFragmentManager().beginTransaction();
 
+        // Replace whatever is in the fragment_container view with this fragment,
+        // and add the transaction to the back stack so the user can navigate back
+        transaction.replace(R.id.fragment_container, newFragment);
+        transaction.addToBackStack(null);
+
+        // Commit the transaction
+        transaction.commit();
     }
 
     @Override
@@ -202,7 +216,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     //TODO: Find what this would be used by and for!
     public void onFragmentInteraction(Uri uri) {
-        Toast.makeText(this, "You clicked Events", Toast.LENGTH_LONG).show();
+
     }
 
     @Override

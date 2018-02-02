@@ -107,6 +107,6 @@ public class HolidayFragment extends Fragment {
         // TODO: Update argument type and name
         void onListFragmentInteraction(DummyItem item);
 
-        void onHolidayDetialsInteraction(Uri uri);
+        void onHolidayDetailsInteraction(Uri uri);
     }
 }
