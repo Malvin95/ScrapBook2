@@ -14,7 +14,8 @@ import android.view.ViewGroup;
 import com.mobile.apex.scrapbook21.MyHolidayRecyclerViewAdapter;
 import com.mobile.apex.scrapbook21.R;
 import com.mobile.apex.scrapbook21.dummy.DummyContent;
-import com.mobile.apex.scrapbook21.dummy.DummyContent.DummyItem;
+import com.mobile.apex.scrapbook21.model.Holiday;
+//import com.mobile.apex.scrapbook21.dummy.DummyContent.DummyItem;
 
 /**
  * A fragment representing a list of Items.
@@ -105,7 +106,7 @@ public class HolidayFragment extends Fragment {
      */
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onListFragmentInteraction(DummyItem item);
+        void onListFragmentInteraction(Holiday item);
 
         void onHolidayDetailsInteraction(Uri uri);
     }

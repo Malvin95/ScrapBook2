@@ -7,21 +7,22 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.mobile.apex.scrapbook21.Fragments.HolidayFragment.OnListFragmentInteractionListener;
-import com.mobile.apex.scrapbook21.dummy.DummyContent.DummyItem;
+//import com.mobile.apex.scrapbook21.dummy.DummyContent.DummyItem;
+import com.mobile.apex.scrapbook21.model.Holiday;
 
 import java.util.List;
 
 /**
- * {@link RecyclerView.Adapter} that can display a {@link DummyItem} and makes a call to the
+ * {@link RecyclerView.Adapter} that can display a {@link Holiday} and makes a call to the
  * specified {@link OnListFragmentInteractionListener}.
  * TODO: Replace the implementation with code for your data type.
  */
 public class MyHolidayRecyclerViewAdapter extends RecyclerView.Adapter<MyHolidayRecyclerViewAdapter.ViewHolder> {
 
-    private final List<DummyItem> mValues;
+    private final List<Holiday> mValues;
     private final OnListFragmentInteractionListener mListener;
 
-    public MyHolidayRecyclerViewAdapter(List<DummyItem> items, OnListFragmentInteractionListener listener) {
+    public MyHolidayRecyclerViewAdapter(List<Holiday> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
@@ -36,8 +37,8 @@ public class MyHolidayRecyclerViewAdapter extends RecyclerView.Adapter<MyHoliday
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).id);
-        holder.mContentView.setText(mValues.get(position).content);
+        holder.mIdView.setText(mValues.get(position).getTitle());
+        holder.mContentView.setText(mValues.get(position).getNotes());
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,7 +61,7 @@ public class MyHolidayRecyclerViewAdapter extends RecyclerView.Adapter<MyHoliday
         public final View mView;
         public final TextView mIdView;
         public final TextView mContentView;
-        public DummyItem mItem;
+        public Holiday mItem;
 
         public ViewHolder(View view) {
             super(view);

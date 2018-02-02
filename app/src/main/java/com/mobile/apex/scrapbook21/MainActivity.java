@@ -24,6 +24,9 @@ import com.mobile.apex.scrapbook21.Fragments.HolidayFragment;
 import com.mobile.apex.scrapbook21.Fragments.HomeFragment;
 import com.mobile.apex.scrapbook21.Fragments.ScrapbookFragment;
 import com.mobile.apex.scrapbook21.dummy.DummyContent;
+import com.mobile.apex.scrapbook21.model.Holiday;
+
+import java.io.Serializable;
 
 public class MainActivity extends AppCompatActivity
     implements NavigationView.OnNavigationItemSelectedListener,
@@ -171,8 +174,8 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void onListFragmentInteraction(DummyContent.DummyItem item){
-        Toast.makeText(this, "You clicked " + item.toString(), Toast.LENGTH_LONG).show();
+    public void onListFragmentInteraction(Holiday item){
+        //Toast.makeText(this, "You clicked " + item.toString(), Toast.LENGTH_LONG).show();
         //Create the new fragment
         HolidayDetailsFragment newFragment = new HolidayDetailsFragment();
         // add an argument specifying the item it should show

@@ -1,5 +1,7 @@
 package com.mobile.apex.scrapbook21.dummy;
 
+import com.mobile.apex.scrapbook21.model.Holiday;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,12 +19,13 @@ public class DummyContent {
     /**
      * An array of sample (dummy) items.
      */
-    public static final List<DummyItem> ITEMS = new ArrayList<DummyItem>();
+    //public static final List<DummyItem> ITEMS = new ArrayList<DummyItem>();
+    public static final List<Holiday> ITEMS = new ArrayList<Holiday>();
 
     /**
      * A map of sample (dummy) items, by ID.
      */
-    public static final Map<String, DummyItem> ITEM_MAP = new HashMap<String, DummyItem>();
+    //public static final Map<String, DummyItem> ITEM_MAP = new HashMap<String, DummyItem>();
 
     private static final int COUNT = 25;
 
@@ -33,13 +36,13 @@ public class DummyContent {
         }
     }
 
-    private static void addItem(DummyItem item) {
+    private static void addItem(Holiday item) {
         ITEMS.add(item);
-        ITEM_MAP.put(item.id, item);
+        //ITEM_MAP.put(item.id, item);
     }
 
-    private static DummyItem createDummyItem(int position) {
-        return new DummyItem(String.valueOf(position),
+    private static Holiday createDummyItem(int position) {
+        return new Holiday(
                 "Holiday " + position,
                 makeDetails(position));
     }
@@ -56,6 +59,7 @@ public class DummyContent {
     /**
      * A dummy item representing a piece of content.
      */
+    /*
     public static class DummyItem implements Serializable {
         public final String id;
         public final String content;
@@ -72,4 +76,5 @@ public class DummyContent {
             return content;
         }
     }
+    */
 }
