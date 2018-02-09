@@ -1,11 +1,13 @@
 package com.mobile.apex.scrapbook21;
 
 import android.Manifest;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
@@ -45,8 +47,21 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        /**if(ContextCompat.checkSelfPermission(this,
-                Manifest.permission))*/
+        if(ContextCompat.checkSelfPermission(this,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE)== PackageManager.PERMISSION_DENIED)
+        {
+            canSaveExternal=false;
+            //if you don't have required permissions, ask for it.
+            //(Only required for API 23+)
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                    permissionRequestCode);
+        }
+        else
+        {
+            //we already have the permission.
+            canSaveExternal=true;
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scrap_nav21);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
