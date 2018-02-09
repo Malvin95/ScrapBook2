@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.mobile.apex.scrapbook21.R;
-import com.mobile.apex.scrapbook21.dummy.DummyContent;
 import com.mobile.apex.scrapbook21.model.Holiday;
 
 

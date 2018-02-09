@@ -13,8 +13,9 @@ import android.view.ViewGroup;
 
 import com.mobile.apex.scrapbook21.MyHolidayRecyclerViewAdapter;
 import com.mobile.apex.scrapbook21.R;
-import com.mobile.apex.scrapbook21.dummy.DummyContent;
 import com.mobile.apex.scrapbook21.model.Holiday;
+
+import com.mobile.apex.scrapbook21.model.HolidayData;
 //import com.mobile.apex.scrapbook21.dummy.DummyContent.DummyItem;
 
 /**
@@ -71,7 +72,7 @@ public class HolidayFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new MyHolidayRecyclerViewAdapter(DummyContent.ITEMS, mListener));
+            recyclerView.setAdapter(new MyHolidayRecyclerViewAdapter(/**Holiday.ITEMS*/ HolidayData.getInstance().getAllHolidays(), mListener));
         }
         return view;
     }

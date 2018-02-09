@@ -1,5 +1,9 @@
 package com.mobile.apex.scrapbook21.model;
 
+import android.content.Context;
+
+import com.mobile.apex.scrapbook21.R;
+
 import java.io.Serializable;
 
 /**
@@ -12,11 +16,11 @@ public class Holiday implements Serializable {
     private String startDate;
     private String endDate;
 
-    public Holiday(String t, String n, String sD, String eD) {
-        setTitle(t);
-        setNotes(n);
-        setStartDate(sD);
-        setEndDate(eD);
+    public Holiday(String title, String notes) {
+        this.title = title;
+        this.notes = notes;
+        //startDate = context.getString(R.string.start_date);
+        //endDate = context.getString(R.string.end_date);
     }
 
     public String getTitle() {

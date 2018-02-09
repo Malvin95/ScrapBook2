@@ -1,11 +1,13 @@
 package com.mobile.apex.scrapbook21;
 
+import android.Manifest;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -23,8 +25,8 @@ import com.mobile.apex.scrapbook21.Fragments.HolidayDetailsFragment;
 import com.mobile.apex.scrapbook21.Fragments.HolidayFragment;
 import com.mobile.apex.scrapbook21.Fragments.HomeFragment;
 import com.mobile.apex.scrapbook21.Fragments.ScrapbookFragment;
-import com.mobile.apex.scrapbook21.dummy.DummyContent;
 import com.mobile.apex.scrapbook21.model.Holiday;
+import com.mobile.apex.scrapbook21.model.HolidayData;
 
 import java.io.Serializable;
 
@@ -38,8 +40,13 @@ public class MainActivity extends AppCompatActivity
         HolidayDetailsFragment.OnHolidayDetailsFragmentInteractionListener
 {
 
+    private  final int permissionRequestCode=1;
+    private boolean canSaveExternal;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        /**if(ContextCompat.checkSelfPermission(this,
+                Manifest.permission))*/
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scrap_nav21);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

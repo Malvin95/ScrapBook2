@@ -19,7 +19,7 @@ public class DummyContent {
     /**
      * An array of sample (dummy) items.
      */
-    //public static final List<DummyItem> ITEMS = new ArrayList<DummyItem>();
+    //public static final List<DummyItem> holidays = new ArrayList<DummyItem>();
     public static final List<Holiday> ITEMS = new ArrayList<Holiday>();
 
     /**
