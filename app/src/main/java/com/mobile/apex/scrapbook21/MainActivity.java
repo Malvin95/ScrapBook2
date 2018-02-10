@@ -53,28 +53,9 @@ public class MainActivity extends AppCompatActivity
         HolidayDetailsFragment.OnHolidayDetailsFragmentInteractionListener
 {
 
-    private  final int permissionRequestCode=1;
-    private boolean canSaveExternal;
-    private static final int ACTION_TAKE_PHOTO_B = 1;
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
-        if(ContextCompat.checkSelfPermission(this,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE)== PackageManager.PERMISSION_DENIED)
-        {
-            canSaveExternal=false;
-            //if you don't have required permissions, ask for it.
-            //(Only required for API 23+)
-            ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                    permissionRequestCode);
-        }
-        else
-        {
-            //we already have the permission.
-            canSaveExternal=true;
-        }
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scrap_nav21);
@@ -105,37 +86,7 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-        Button picBtn = (Button)findViewById(R.id.btnIntend);
-        setBtnListenerOrDisable(picBtn, mTakePicOnClickListener, MediaStore.ACTION_IMAGE_CAPTURE);
-    }
-
-    @Override//android recommended class to handle permissions
-    public void onRequestPermissionResult(int requestCode, String permissions[], int [] grantResults)
-    {
-        switch (requestCode)
-        {
-            case permissionRequestCode:
-            {
-                //If request is cancelled, the result arrays are empty.
-                if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
-                {
-                    //we have been granted permission
-                    canSaveExternal = true;
-                }
-                else
-                {
-                    //permission denied, disable the functionality that depends on this permission.
-                    Toast.makeText(PhotoIntentActivity.this,
-                        "Permission denied to read your External Storage",
-                        Toast.LENGTH_SHORT).show();
-                    canSaveExternal = false;
-                }
-                return;
-            }
-            //other 'case' line to check for other permissions this app might request.
-        }
-    }
+     }
 
     public void insertDefaultFragment(Fragment firstFragment)
     {
@@ -147,16 +98,6 @@ public class MainActivity extends AppCompatActivity
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container, firstFragment).commit();
     }
-
-    private Button.OnClickListener mTakePicOnClickListener =
-            new Button.OnClickListener()
-            {
-                @Override
-                public void onClick(View v)
-                {
-                    dispatchTakePictureIntent(ACTION_TAKE_PHOTO_B);
-                }
-            };
 
     @Override
     public void onBackPressed()
@@ -315,120 +256,5 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
 
-    }
-
-    private void dispatchTakePictureIntent(int actionCode)
-    {
-        intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-
-        switch(actionCode) {
-            case ACTION_TAKE_PHOTO_B:
-                //ensure that there's a camera activity to handle the intent
-                if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-                    File f = null;
-                    try {
-                        f = createImageFile();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                        f = null;
-                        mCurrentPhotoPath = null;
-                    }
-                    if (f != null) {
-                        photoUri = FileProvider.getUriForFile(this,
-                                "com.example.android.fileprovider",
-                                f);
-                        takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
-                        startActivityForResult(takePictureIntent, ACTION_TAKE_PHOTO_B);
-                    }
-                }
-                //if
-                break;
-            default:
-                break;
-        }
-    }
-
-    private File createImageFile() throws IOException
-    {
-        //Create an image file name
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        String imageFileName = JPEG_FILE_PREFIX + timeStamp + "_";
-        File storageDir = getExternalFilesFir(Environment.DIRECTORY_PICTURES);
-        File image = File.createTempFile(
-                imageFileName, /*prefix*/
-                JPEG_FILE_SUFFIX, /*suffix*/
-                storageDir /*directory*/
-        );
-        //Save a file: path for use with ACTION_VIEW intents
-        mCurrentPhotoPath = image.getAbsolutePath();
-        return image;
-    }
-
-    private void handlePhoto()
-    {
-        if(mCurrentPhotoPath != null)
-        {
-            Log.i("AJB","photo located at"+mCurrentPhotoPath);
-            imageAdapter.addImage(mcurrentPhotoPath);
-            imageAdapter.notifyDataSetChanged();
-            grabImage();
-            mCurrentPhotoPath = null;
-        }
-        else
-        {
-            Log.i("AJB", "photo but no path");
-        }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        switch (requestCode)
-        {
-            case ACTION_TAKE_PHOTO_B:
-            {
-                if(resultCode == RESULT_OK)
-                {
-                    handlePhoto();
-                }
-                break;
-            }//ACTION_TAKE_PHOTO_B
-        }//switch
-    }
-
-    private void grabImage()
-    {
-        if(canSaveExternal)
-        {
-            this.getContentResolver().nofifyChange(photoUri, null);
-            ContentResolver cr = this.getContentResolver();
-            Bitmap bitmap;
-
-            try {
-                bitmap = android.provider.MediaStore.Images.Media.getBitmap(cr, photoUri);
-                File album = getAlbumDir();
-                String fName = photoUri.getLastPathSegment();
-                File file = new File(album, fName);
-                Log.i("AJB", "Saving big image into " + file.getAbsolutePath());
-
-                if (file.exists()) {
-                    file.delete();
-                }
-                try {
-                    FileOutputStream out = new FileOutputStream(file);
-                    bitmap.compress(Bitmap.CompressFormat.JPEG, 90, out);
-                    out.flush();
-                    out.close();
-                } catch (Exception e) {
-                    Log.d("AJB", "Failed to save to " + file.getAbsoluteFile());
-                    e.printStackTrace();
-                }
-            }catch (Exception e){
-                Log.d("AJB", "Failed to Load", e);
-                }
-        }
-        else
-        {
-            Log.i("AJB", "Not allowed to save to users Pictures folder");
-        }
     }
 }
