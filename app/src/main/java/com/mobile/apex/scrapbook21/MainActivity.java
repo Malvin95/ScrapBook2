@@ -53,9 +53,15 @@ public class MainActivity extends AppCompatActivity
         HolidayDetailsFragment.OnHolidayDetailsFragmentInteractionListener
 {
 
+    private String mCurrentPhotoPath;
     private  final int permissionRequestCode=1;
     private boolean canSaveExternal;
     private static final int ACTION_TAKE_PHOTO_B = 1;
+    private static final String JPEG_FILE_PREFIX = "IMG_";
+    private static final String JPEG_FILE_SUFFIX = ".jpg";
+
+    private AlbumStorageDirectory mAlbumStorageDirFactory = null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -317,9 +323,25 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+    private File createImageFile() throws IOException
+    {
+        //Create an image file name
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = JPEG_FILE_PREFIX + timeStamp + "_";
+        File storageDir = getExternalFilesFir(Environment.DIRECTORY_PICTURES);
+        File image = File.createTempFile(
+                imageFileName, /*prefix*/
+                JPEG_FILE_SUFFIX, /*suffix*/
+                storageDir /*directory*/
+        );
+        //Save a file: path for use with ACTION_VIEW intents
+        mCurrentPhotoPath = image.getAbsolutePath();
+        return image;
+    }
+
     private void dispatchTakePictureIntent(int actionCode)
     {
-        intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
         switch(actionCode) {
             case ACTION_TAKE_PHOTO_B:
@@ -346,22 +368,6 @@ public class MainActivity extends AppCompatActivity
             default:
                 break;
         }
-    }
-
-    private File createImageFile() throws IOException
-    {
-        //Create an image file name
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        String imageFileName = JPEG_FILE_PREFIX + timeStamp + "_";
-        File storageDir = getExternalFilesFir(Environment.DIRECTORY_PICTURES);
-        File image = File.createTempFile(
-                imageFileName, /*prefix*/
-                JPEG_FILE_SUFFIX, /*suffix*/
-                storageDir /*directory*/
-        );
-        //Save a file: path for use with ACTION_VIEW intents
-        mCurrentPhotoPath = image.getAbsolutePath();
-        return image;
     }
 
     private void handlePhoto()
