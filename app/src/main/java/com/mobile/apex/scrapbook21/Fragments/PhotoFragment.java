@@ -113,10 +113,6 @@ public class PhotoFragment extends Fragment {
         gridview = (GridView) v.findViewById(R.id.gridview);
         /* The image adapter that contains a list of filenames to be displayed in the grid */
         imageAdapter = new ImageAdapter(getActivity());
-        /* Read the file names from the app's Picture folder */
-        readImageFiles();
-        /* notify the data changed */
-        imageAdapter.notifyDataSetChanged();
         /* now set the adapter for the grid view */
         gridview.setAdapter(imageAdapter);
 
@@ -207,6 +203,16 @@ public class PhotoFragment extends Fragment {
                     getText(R.string.cannot).toString() + " " + btn.getText());
             btn.setClickable(false);
         }
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        imageAdapter.clear();
+        /* Read the file names from the app's Picture folder */
+        readImageFiles();
+        /* notify the data changed */
+        imageAdapter.notifyDataSetChanged();
     }
 
     /**

@@ -2,10 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.mobile.apex.scrapbook21">
 
+    <uses-feature android:name="android.hardware.camera"/>
+
     <!--The code that gives permission for camera use, and for permission to
             write to external storage.  !*MAY NOT BE NECESSARY*!
 
-    <uses-feature android:name="android.hardware.camera"/>
+
 
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
