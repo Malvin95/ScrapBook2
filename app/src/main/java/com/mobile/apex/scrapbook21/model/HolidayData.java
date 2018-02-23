@@ -1,7 +1,6 @@
 package com.mobile.apex.scrapbook21.model;
 
 import android.content.Context;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +14,6 @@ public class HolidayData
     private Holiday currentHoliday;
     private static HolidayData instance;
     public final List<Holiday> holidays;
-
 
     private HolidayData(Context context)
     {
@@ -37,7 +35,6 @@ public class HolidayData
      * In case we don't have a context...
      * @return the singleton instance
      */
-
     private void addHoliday(Holiday holiday) {
         holidays.add(holiday);
     }

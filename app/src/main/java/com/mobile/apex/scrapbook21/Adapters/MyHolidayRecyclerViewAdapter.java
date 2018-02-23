@@ -1,4 +1,4 @@
-package com.mobile.apex.scrapbook21;
+package com.mobile.apex.scrapbook21.Adapters;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.mobile.apex.scrapbook21.Fragments.HolidayFragment.OnListFragmentInteractionListener;
 //import com.mobile.apex.scrapbook21.dummy.DummyContent.DummyItem;
+import com.mobile.apex.scrapbook21.R;
 import com.mobile.apex.scrapbook21.model.Holiday;
 
 import java.util.List;

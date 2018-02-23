@@ -1,4 +1,4 @@
-package com.mobile.apex.scrapbook21.photobyintent;
+package com.mobile.apex.scrapbook21.Adapters;
 
 
 import android.content.Context;

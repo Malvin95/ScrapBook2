@@ -11,7 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.mobile.apex.scrapbook21.MyHolidayRecyclerViewAdapter;
+import com.mobile.apex.scrapbook21.Adapters.MyHolidayRecyclerViewAdapter;
 import com.mobile.apex.scrapbook21.R;
 import com.mobile.apex.scrapbook21.model.Holiday;
 

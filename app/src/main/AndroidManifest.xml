@@ -30,7 +30,7 @@
         </activity>
         <provider
             android:name="android.support.v4.content.FileProvider"
-            android:authorities="com.example.android.fileprovider"
+            android:authorities="com.mobile.apex.scrapbook21.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
