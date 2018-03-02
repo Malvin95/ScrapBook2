@@ -3,6 +3,8 @@ package com.mobile.apex.scrapbook21.Fragments;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,8 +12,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.mobile.apex.scrapbook21.Adapters.MyHolidayRecyclerViewAdapter;
+import com.mobile.apex.scrapbook21.FABInterface;
 import com.mobile.apex.scrapbook21.R;
 import com.mobile.apex.scrapbook21.model.Holiday;
 
@@ -24,7 +28,8 @@ import com.mobile.apex.scrapbook21.model.HolidayData;
  * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
  * interface.
  */
-public class HolidayFragment extends Fragment {
+public class HolidayFragment extends Fragment
+        implements FABInterface{
 
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
@@ -95,6 +100,23 @@ public class HolidayFragment extends Fragment {
         mListener = null;
     }
 
+    // TODO: Rename method, update argument and hook method into UI event
+    public void onButtonPressed(Uri uri) {
+        if (mListener != null) {
+            mListener.onFragmentInteraction(uri);
+        }
+    }
+
+    @Override
+    public void fabClick() {
+        Toast.makeText(getContext(), "This the HolidayFragment FAB interaction!", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void toggleFAB() {
+
+    }
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -110,5 +132,7 @@ public class HolidayFragment extends Fragment {
         void onListFragmentInteraction(Holiday item);
 
         void onHolidayDetailsInteraction(Uri uri);
+
+        void onFragmentInteraction(Uri uri);
     }
 }
