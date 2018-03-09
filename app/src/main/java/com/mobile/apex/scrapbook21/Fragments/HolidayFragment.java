@@ -3,8 +3,6 @@ package com.mobile.apex.scrapbook21.Fragments;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,31 +10,34 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.DatePicker;
 import android.widget.Toast;
 
 import com.mobile.apex.scrapbook21.Adapters.MyHolidayRecyclerViewAdapter;
-import com.mobile.apex.scrapbook21.FABInterface;
 import com.mobile.apex.scrapbook21.R;
 import com.mobile.apex.scrapbook21.model.FABresponse;
 import com.mobile.apex.scrapbook21.model.Holiday;
 
 import com.mobile.apex.scrapbook21.model.HolidayData;
+
+import java.util.Calendar;
+import java.util.Date;
 //import com.mobile.apex.scrapbook21.dummy.DummyContent.DummyItem;
 
 /**
  * A fragment representing a list of Items.
  * <p/>
- * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
+ * Activities containing this fragment MUST implement the {@link OnHolidayFragmentInteractionListener}
  * interface.
  */
 public class HolidayFragment extends Fragment
-        implements FABInterface, FABresponse{
+        implements FABresponse{
 
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
     // TODO: Customize parameters
     private int mColumnCount = 1;
-    private OnListFragmentInteractionListener mListener;
+    private OnHolidayFragmentInteractionListener mListener;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -87,11 +88,11 @@ public class HolidayFragment extends Fragment
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnListFragmentInteractionListener) {
-            mListener = (OnListFragmentInteractionListener) context;
+        if (context instanceof OnHolidayFragmentInteractionListener) {
+            mListener = (OnHolidayFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement OnListFragmentInteractionListener");
+                    + " must implement OnHolidayFragmentInteractionListener");
         }
     }
 
@@ -110,11 +111,8 @@ public class HolidayFragment extends Fragment
 
     @Override
     public void FABClick() {
-        Toast.makeText(getContext(), "This the HolidayFragment FAB interaction!", Toast.LENGTH_LONG).show();
-    }
-
-    @Override
-    public void toggleFAB() {
+        //Toast.makeText(getContext(), "This the HolidayFragment FAB interaction!", Toast.LENGTH_LONG).show();
+        mListener.showHolidayDetailsFragment(new Holiday("title", "notes"));
 
     }
 
@@ -128,11 +126,9 @@ public class HolidayFragment extends Fragment
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnListFragmentInteractionListener {
+    public interface OnHolidayFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onListFragmentInteraction(Holiday item);
-
-        void onHolidayDetailsInteraction(Uri uri);
+        void showHolidayDetailsFragment(Holiday item);
 
         void onFragmentInteraction(Uri uri);
     }

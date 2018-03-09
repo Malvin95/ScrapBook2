@@ -31,7 +31,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/start_text"
-            />
+        />
+
+        <Button
+            android:id="@+id/startButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/start_text"
+            android:onClick="showDatePickerDialog"
+        />
+    <!--
         <EditText
             android:id="@+id/startDate"
             android:layout_width="wrap_content"
@@ -50,7 +59,7 @@
             android:layout_height="wrap_content"
             android:text="@string/end_date"
             />
+            -->
     </LinearLayout>
-
 
 </LinearLayout>

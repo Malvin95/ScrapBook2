@@ -9,8 +9,8 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
@@ -28,6 +28,7 @@ import android.widget.Toast;
 import android.support.v4.app.Fragment;
 
 import com.mobile.apex.scrapbook21.Fragments.CalendarFragment;
+import com.mobile.apex.scrapbook21.Fragments.DatePickerFragment;
 import com.mobile.apex.scrapbook21.Fragments.EventsFragment;
 import com.mobile.apex.scrapbook21.Fragments.HolidayDetailsFragment;
 import com.mobile.apex.scrapbook21.Fragments.HolidayFragment;
@@ -46,7 +47,7 @@ import static android.support.v4.app.FragmentManager.POP_BACK_STACK_INCLUSIVE;
 
 public class MainActivity extends AppCompatActivity
     implements NavigationView.OnNavigationItemSelectedListener,
-        HolidayFragment.OnListFragmentInteractionListener,
+        HolidayFragment.OnHolidayFragmentInteractionListener,
         HomeFragment.OnHomeFragmentInteractionListener,
         CalendarFragment.OnCalendarFragmentInteractionListener,
         ScrapbookFragment.OnScrapbookFragmentInteractionListener,
@@ -259,7 +260,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void onListFragmentInteraction(Holiday item)
+    public void showHolidayDetailsFragment(Holiday item)
     {
         //Toast.makeText(this, "You clicked " + item.toString(), Toast.LENGTH_LONG).show();
         //Create the new fragment
@@ -385,11 +386,10 @@ public class MainActivity extends AppCompatActivity
         } // switch
     }
 
-    /**
-    @Override
-    public void FABClick() {
-
-    }*/
+    public void showDatePickerDialog(View v) {
+        DialogFragment newFragment = new DatePickerFragment();
+        newFragment.show(getSupportFragmentManager(), "datePicker");
+    }
 
     @Override
     public void toggleFAB(){

@@ -6,7 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.mobile.apex.scrapbook21.Fragments.HolidayFragment.OnListFragmentInteractionListener;
+import com.mobile.apex.scrapbook21.Fragments.HolidayFragment;
+import com.mobile.apex.scrapbook21.Fragments.HolidayFragment.OnHolidayFragmentInteractionListener;
 //import com.mobile.apex.scrapbook21.dummy.DummyContent.DummyItem;
 import com.mobile.apex.scrapbook21.R;
 import com.mobile.apex.scrapbook21.model.Holiday;
@@ -15,15 +16,15 @@ import java.util.List;
 
 /**
  * {@link RecyclerView.Adapter} that can display a {@link Holiday} and makes a call to the
- * specified {@link OnListFragmentInteractionListener}.
+ * specified {@link HolidayFragment.OnHolidayFragmentInteractionListener}.
  * TODO: Replace the implementation with code for your data type.
  */
 public class MyHolidayRecyclerViewAdapter extends RecyclerView.Adapter<MyHolidayRecyclerViewAdapter.ViewHolder> {
 
     private final List<Holiday> mValues;
-    private final OnListFragmentInteractionListener mListener;
+    private final HolidayFragment.OnHolidayFragmentInteractionListener mListener;
 
-    public MyHolidayRecyclerViewAdapter(List<Holiday> items, OnListFragmentInteractionListener listener) {
+    public MyHolidayRecyclerViewAdapter(List<Holiday> items, OnHolidayFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
@@ -48,7 +49,7 @@ public class MyHolidayRecyclerViewAdapter extends RecyclerView.Adapter<MyHoliday
                     // Notify the active callbacks interface (the activity, if the
                     // fragment is attached to one) that an item has been selected.
                     Holiday item = holder.mItem;
-                    mListener.onListFragmentInteraction(holder.mItem);
+                    mListener.showHolidayDetailsFragment(holder.mItem);
                 }
             }
         });
