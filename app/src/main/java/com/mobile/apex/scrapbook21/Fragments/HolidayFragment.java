@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.mobile.apex.scrapbook21.Adapters.MyHolidayRecyclerViewAdapter;
 import com.mobile.apex.scrapbook21.FABInterface;
 import com.mobile.apex.scrapbook21.R;
+import com.mobile.apex.scrapbook21.model.FABresponse;
 import com.mobile.apex.scrapbook21.model.Holiday;
 
 import com.mobile.apex.scrapbook21.model.HolidayData;
@@ -29,7 +30,7 @@ import com.mobile.apex.scrapbook21.model.HolidayData;
  * interface.
  */
 public class HolidayFragment extends Fragment
-        implements FABInterface{
+        implements FABInterface, FABresponse{
 
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
@@ -108,7 +109,7 @@ public class HolidayFragment extends Fragment
     }
 
     @Override
-    public void fabClick() {
+    public void FABClick() {
         Toast.makeText(getContext(), "This the HolidayFragment FAB interaction!", Toast.LENGTH_LONG).show();
     }
 

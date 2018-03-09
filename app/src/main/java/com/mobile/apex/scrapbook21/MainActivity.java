@@ -34,6 +34,7 @@ import com.mobile.apex.scrapbook21.Fragments.HolidayFragment;
 import com.mobile.apex.scrapbook21.Fragments.HomeFragment;
 import com.mobile.apex.scrapbook21.Fragments.PhotoFragment;
 import com.mobile.apex.scrapbook21.Fragments.ScrapbookFragment;
+import com.mobile.apex.scrapbook21.model.FABresponse;
 import com.mobile.apex.scrapbook21.model.Holiday;
 
 import java.io.File;
@@ -99,8 +100,8 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View view)
             {
                 Fragment f = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
-                if (f instanceof FABInterface) {
-                    ((FABInterface) f).fabClick();
+                if (f instanceof FABresponse) {
+                    ((FABresponse) f).FABClick();
                 }
 
             }
@@ -382,5 +383,21 @@ public class MainActivity extends AppCompatActivity
 
 
         } // switch
+    }
+
+    /**
+    @Override
+    public void FABClick() {
+
+    }*/
+
+    @Override
+    public void toggleFAB(){
+        if (isFabVisible) {
+            fab.hide();
+        } else {
+            fab.show();
+        }
+        isFabVisible = !isFabVisible;
     }
 }

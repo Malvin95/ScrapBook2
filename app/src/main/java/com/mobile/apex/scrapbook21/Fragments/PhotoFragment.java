@@ -22,6 +22,7 @@ import android.widget.Toast;
 import com.mobile.apex.scrapbook21.Adapters.ImageAdapter;
 import com.mobile.apex.scrapbook21.FABInterface;
 import com.mobile.apex.scrapbook21.R;
+import com.mobile.apex.scrapbook21.model.FABresponse;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -36,7 +37,7 @@ import java.util.List;
  * create an instance of this fragment.
  */
 public class PhotoFragment extends Fragment
-        implements FABInterface
+
     {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -169,14 +170,12 @@ public class PhotoFragment extends Fragment
             throw new RuntimeException(context.toString()
                     + " must implement OnPhotoFragmentInteractionListener");
         }
-        toggleFAB();
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
         mListener = null;
-        toggleFAB();
     }
 
     /**
@@ -215,24 +214,26 @@ public class PhotoFragment extends Fragment
     }
 
     @Override
-    public void onResume(){
+    public void onResume()
+    {
         super.onResume();
         imageAdapter.clear();
         /* Read the file names from the app's Picture folder */
         readImageFiles();
         /* notify the data changed */
         imageAdapter.notifyDataSetChanged();
+        mListener.toggleFAB();
     }
 
-        @Override
-        public void fabClick() {
 
-        }
+    @Override
+    public void onPause()
+    {
+        super.onPause();
+        mListener.toggleFAB();
+    }
 
-        @Override
-        public void toggleFAB(){
 
-        }
         /**
          * TODO: work out how to solve this issue toggleFAB() Issue!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         @Override
@@ -256,7 +257,7 @@ public class PhotoFragment extends Fragment
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnPhotoFragmentInteractionListener {
+    public interface OnPhotoFragmentInteractionListener extends FABInterface{
         // TODO: Update argument type and name
         void onPhotoFragmentInteraction();
     }

@@ -27,7 +27,7 @@
         <item
             android:id="@+id/nav_camera"
             android:icon="@drawable/ic_menu_camera"
-            android:title="My Holiday" />
+            android:title="Camera" />
         <item
             android:id="@+id/nav_promotional"
             android:icon="@drawable/ic_menu_promo"
