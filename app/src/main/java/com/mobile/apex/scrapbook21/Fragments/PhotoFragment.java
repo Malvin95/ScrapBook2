@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,7 +20,9 @@ import android.widget.GridView;
 import android.widget.Toast;
 
 import com.mobile.apex.scrapbook21.Adapters.ImageAdapter;
+import com.mobile.apex.scrapbook21.FABInterface;
 import com.mobile.apex.scrapbook21.R;
+import com.mobile.apex.scrapbook21.model.FABresponse;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -33,7 +36,9 @@ import java.util.List;
  * Use the {@link PhotoFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class PhotoFragment extends Fragment {
+public class PhotoFragment extends Fragment
+
+    {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -85,6 +90,7 @@ public class PhotoFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     /**
@@ -125,7 +131,6 @@ public class PhotoFragment extends Fragment {
             }
         });
 
-
         return v;
     }
 
@@ -156,9 +161,12 @@ public class PhotoFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnPhotoFragmentInteractionListener) {
+        if (context instanceof OnPhotoFragmentInteractionListener)
+        {
             mListener = (OnPhotoFragmentInteractionListener) context;
-        } else {
+        }
+        else
+        {
             throw new RuntimeException(context.toString()
                     + " must implement OnPhotoFragmentInteractionListener");
         }
@@ -206,16 +214,40 @@ public class PhotoFragment extends Fragment {
     }
 
     @Override
-    public void onResume(){
+    public void onResume()
+    {
         super.onResume();
         imageAdapter.clear();
         /* Read the file names from the app's Picture folder */
         readImageFiles();
         /* notify the data changed */
         imageAdapter.notifyDataSetChanged();
+        mListener.toggleFAB();
     }
 
-    /**
+
+    @Override
+    public void onPause()
+    {
+        super.onPause();
+        mListener.toggleFAB();
+    }
+
+
+        /**
+         * TODO: work out how to solve this issue toggleFAB() Issue!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        @Override
+        public void toggleFAB(){
+            if (isFabVisible) {
+                fab.hide();
+            } else {
+                fab.show();
+            }
+            isFabVisible = !isFabVisible;
+        }
+        */
+
+        /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
      * to the activity and potentially other fragments contained in that
@@ -225,7 +257,7 @@ public class PhotoFragment extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnPhotoFragmentInteractionListener {
+    public interface OnPhotoFragmentInteractionListener extends FABInterface{
         // TODO: Update argument type and name
         void onPhotoFragmentInteraction();
     }

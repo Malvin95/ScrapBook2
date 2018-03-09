@@ -1,10 +1,8 @@
 package com.mobile.apex.scrapbook21;
 
 import android.Manifest;
-import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -13,6 +11,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
@@ -25,7 +24,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 import android.support.v4.app.Fragment;
 
@@ -36,15 +34,15 @@ import com.mobile.apex.scrapbook21.Fragments.HolidayFragment;
 import com.mobile.apex.scrapbook21.Fragments.HomeFragment;
 import com.mobile.apex.scrapbook21.Fragments.PhotoFragment;
 import com.mobile.apex.scrapbook21.Fragments.ScrapbookFragment;
+import com.mobile.apex.scrapbook21.model.FABresponse;
 import com.mobile.apex.scrapbook21.model.Holiday;
-import com.mobile.apex.scrapbook21.model.HolidayData;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import static android.support.v4.app.FragmentManager.POP_BACK_STACK_INCLUSIVE;
 
 public class MainActivity extends AppCompatActivity
     implements NavigationView.OnNavigationItemSelectedListener,
@@ -66,6 +64,9 @@ public class MainActivity extends AppCompatActivity
 
     private Uri photoUri;
 
+    private Fragment currentFragment;
+    private FloatingActionButton fab;
+    private boolean isFabVisible;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -91,14 +92,18 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab = (FloatingActionButton) findViewById(R.id.fab);
+        isFabVisible = true;
         fab.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
             {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Fragment f = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+                if (f instanceof FABresponse) {
+                    ((FABresponse) f).FABClick();
+                }
+
             }
         });
 
@@ -115,6 +120,30 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    private void addFragment(Fragment fragment, boolean addToStack) {
+        // Add the fragment to the 'fragment_container' FrameLayout
+        if (!addToStack) {
+            // add and don't add to backstack
+            // this is called from the nav drawer so clear the back stack addToStack
+            if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
+                FragmentManager.BackStackEntry entry = getSupportFragmentManager().getBackStackEntryAt(0);
+                getSupportFragmentManager().popBackStack(entry.getId(), POP_BACK_STACK_INCLUSIVE);
+            }
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragment_container, fragment)
+                    .commit();
+
+        } else {
+            // replace and add to backstack
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragment_container, fragment)
+                    .addToBackStack(null)
+                    .commit();
+        }
     }
 
     public void insertDefaultFragment(Fragment firstFragment)
@@ -203,13 +232,13 @@ public class MainActivity extends AppCompatActivity
         }
         else if (id == R.id.nav_worldView)
         {
-            //Toast.makeText(this, "I clicked the WorldView option", Toast.LENGTH_LONG).show();
-            PhotoFragment firstFragment = new PhotoFragment();
-                insertDefaultFragment(firstFragment);
+            Toast.makeText(this, "I clicked the WorldView option", Toast.LENGTH_LONG).show();
         }
-        else if (id == R.id.nav_events)
+        else if (id == R.id.nav_camera)
         {
-            Toast.makeText(this, "I clicked the Events option", Toast.LENGTH_LONG).show();
+            //Toast.makeText(this, "I clicked the Events option", Toast.LENGTH_LONG).show();
+            PhotoFragment firstFragment = new PhotoFragment();
+            insertDefaultFragment(firstFragment);
         }
         else if (id == R.id.nav_promotional)
         {
@@ -234,12 +263,12 @@ public class MainActivity extends AppCompatActivity
     {
         //Toast.makeText(this, "You clicked " + item.toString(), Toast.LENGTH_LONG).show();
         //Create the new fragment
-        HolidayDetailsFragment newFragment = new HolidayDetailsFragment();
+        HolidayDetailsFragment newFragment = HolidayDetailsFragment.newInstance(item);
         // add an argument specifying the item it should show
         // note that the DummyItem class must implement Serializable
-        Bundle args = new Bundle();
-        args.putSerializable("Item", item);
-        newFragment.setArguments(args);
+//        Bundle args = new Bundle();
+//        args.putSerializable("Item", item);
+//        newFragment.setArguments(args);
 
         FragmentTransaction transaction =
                 getSupportFragmentManager().beginTransaction();
@@ -354,5 +383,21 @@ public class MainActivity extends AppCompatActivity
 
 
         } // switch
+    }
+
+    /**
+    @Override
+    public void FABClick() {
+
+    }*/
+
+    @Override
+    public void toggleFAB(){
+        if (isFabVisible) {
+            fab.hide();
+        } else {
+            fab.show();
+        }
+        isFabVisible = !isFabVisible;
     }
 }
