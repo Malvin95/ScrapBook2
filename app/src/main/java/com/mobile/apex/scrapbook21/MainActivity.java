@@ -267,9 +267,9 @@ public class MainActivity extends AppCompatActivity
         HolidayDetailsFragment newFragment = HolidayDetailsFragment.newInstance(item);
         // add an argument specifying the item it should show
         // note that the DummyItem class must implement Serializable
-//        Bundle args = new Bundle();
-//        args.putSerializable("Item", item);
-//        newFragment.setArguments(args);
+        //Bundle args = new Bundle();
+        //args.putSerializable("Item", item);
+        //newFragment.setArguments(args);
 
         FragmentTransaction transaction =
                 getSupportFragmentManager().beginTransaction();

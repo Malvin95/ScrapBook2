@@ -234,20 +234,7 @@ public class PhotoFragment extends Fragment
     }
 
 
-        /**
-         * TODO: work out how to solve this issue toggleFAB() Issue!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        @Override
-        public void toggleFAB(){
-            if (isFabVisible) {
-                fab.hide();
-            } else {
-                fab.show();
-            }
-            isFabVisible = !isFabVisible;
-        }
-        */
-
-        /**
+    /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
      * to the activity and potentially other fragments contained in that
