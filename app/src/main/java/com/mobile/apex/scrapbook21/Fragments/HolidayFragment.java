@@ -113,7 +113,7 @@ public class HolidayFragment extends Fragment
     @Override
     public void FABClick() {
         //Toast.makeText(getContext(), "This the HolidayFragment FAB interaction!", Toast.LENGTH_LONG).show();
-        mListener.showHolidayDetailsFragment(new Holiday("title", "notes", new SimpleDateFormat("dd-mm-yy")));
+        mListener.showHolidayDetailsFragment(new Holiday("title", "notes", new SimpleDateFormat("dd-mm-yy")), true);
 
     }
 
@@ -129,7 +129,7 @@ public class HolidayFragment extends Fragment
      */
     public interface OnHolidayFragmentInteractionListener {
         // TODO: Update argument type and name
-        void showHolidayDetailsFragment(Holiday item);
+        void showHolidayDetailsFragment(Holiday item, boolean useFAB);
 
         void onFragmentInteraction(Uri uri);
     }

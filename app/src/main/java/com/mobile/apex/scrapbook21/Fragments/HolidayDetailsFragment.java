@@ -6,20 +6,18 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EdgeEffect;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import com.mobile.apex.scrapbook21.R;
 import com.mobile.apex.scrapbook21.model.FABresponse;
 import com.mobile.apex.scrapbook21.model.Holiday;
 import com.mobile.apex.scrapbook21.model.HolidayData;
-
-import java.text.SimpleDateFormat;
 
 
 /**
@@ -34,16 +32,17 @@ public class HolidayDetailsFragment extends Fragment implements FABresponse {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "Item";
+    private static final String ARG_PARAM2 = "useFAB";
 
     // TODO: Rename and change types of parameters
-    private Holiday item;
+    private Holiday holiday;
+    private boolean useFAB;
 
     private OnHolidayDetailsFragmentInteractionListener mListener;
 
     private EditText titleField;
     private EditText notesField;
     private Button Save;
-    public Holiday holiday;
     public HolidayData HolidayD;
 
     public HolidayDetailsFragment() {
@@ -58,10 +57,11 @@ public class HolidayDetailsFragment extends Fragment implements FABresponse {
      * @return A new instance of fragment HolidayDetailsFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static HolidayDetailsFragment newInstance(Holiday param1) {
+    public static HolidayDetailsFragment newInstance(Holiday param1, boolean useFAB) {
         HolidayDetailsFragment fragment = new HolidayDetailsFragment();
         Bundle args = new Bundle();
         args.putSerializable(ARG_PARAM1, param1);
+        args.putBoolean(ARG_PARAM2, useFAB);
         fragment.setArguments(args);
         return fragment;
     }
@@ -70,7 +70,8 @@ public class HolidayDetailsFragment extends Fragment implements FABresponse {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            item = (Holiday)getArguments().getSerializable(ARG_PARAM1);
+            holiday = (Holiday)getArguments().getSerializable(ARG_PARAM1);
+            useFAB = getArguments().getBoolean(ARG_PARAM2);
         }
     }
 
@@ -110,12 +111,12 @@ public class HolidayDetailsFragment extends Fragment implements FABresponse {
             } else {
             }
 
-            /**
-            String holidayTitle = titleField.getText().toString();
-            holiday.setHolidayTitle(holidayTitle);
 
-            String notes = notesEditText.getText.toString();
-            holiday.setNotes(notes);*/
+            String holidayTitle = titleField.getText().toString();
+            holiday.setTitle(holidayTitle);
+
+            String notes = notesField.getText().toString();
+            holiday.setNotes(notes);
         }
     };
 
@@ -131,7 +132,7 @@ public class HolidayDetailsFragment extends Fragment implements FABresponse {
         super.onAttach(context);
         if (context instanceof OnHolidayDetailsFragmentInteractionListener) {
             mListener = (OnHolidayDetailsFragmentInteractionListener) context;
-            mListener.changeFabIcon(android.R.drawable.ic_menu_save);
+            //mListener.changeFabIcon(android.R.drawable.ic_menu_save);
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnHolidayDetailsFragmentInteractionListener");
@@ -141,17 +142,35 @@ public class HolidayDetailsFragment extends Fragment implements FABresponse {
     @Override
     public void onDetach() {
         super.onDetach();
-        mListener.defaultFabIcon();
+        //mListener.defaultFabIcon();
         mListener = null;
 
     }
 
     @Override
+    public void onResume()
+    {
+        super.onResume();
+        mListener.defaultFabIcon();
+        mListener.changeFabIcon(android.R.drawable.ic_menu_save);
+    }
+
+    @Override
+    public void onPause()
+    {
+        super.onPause();
+        mListener.defaultFabIcon();
+        mListener.changeFabIcon(android.R.drawable.ic_menu_save);
+    }
+
+    @Override
     public void FABClick()
     {
-
+        //Log.i("TAG", "FABClick Works to save HolidayDetails.Fragment");
+        HolidayData.getInstance().getAllHolidays().add(holiday);
+        Toast.makeText(this, "Saved", Toast.LENGTH_SHORT).show();
     }
-    
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -167,6 +186,7 @@ public class HolidayDetailsFragment extends Fragment implements FABresponse {
         void onFragmentInteraction(Uri uri);
         void changeFabIcon(int id);
         void defaultFabIcon();
+        void toggleFAB();
         void onHolidayDetailsInteraction(Uri uri);
     }
 }

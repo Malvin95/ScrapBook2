@@ -262,7 +262,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void showHolidayDetailsFragment(Holiday item)
+    public void showHolidayDetailsFragment(Holiday item, boolean useFAB)
     {
         //Toast.makeText(this, "You clicked " + item.toString(), Toast.LENGTH_LONG).show();
         //Create the new fragment
