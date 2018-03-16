@@ -20,6 +20,7 @@ import com.mobile.apex.scrapbook21.model.Holiday;
 
 import com.mobile.apex.scrapbook21.model.HolidayData;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 //import com.mobile.apex.scrapbook21.dummy.DummyContent.DummyItem;
@@ -112,7 +113,7 @@ public class HolidayFragment extends Fragment
     @Override
     public void FABClick() {
         //Toast.makeText(getContext(), "This the HolidayFragment FAB interaction!", Toast.LENGTH_LONG).show();
-        mListener.showHolidayDetailsFragment(new Holiday("title", "notes"));
+        mListener.showHolidayDetailsFragment(new Holiday("title", "notes", new SimpleDateFormat("dd-mm-yy")));
 
     }
 

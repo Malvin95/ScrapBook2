@@ -67,6 +67,7 @@ public class MainActivity extends AppCompatActivity
 
     private Fragment currentFragment;
     private FloatingActionButton fab;
+    private int defaultFabIcon;
     private boolean isFabVisible;
 
     @Override
@@ -107,6 +108,7 @@ public class MainActivity extends AppCompatActivity
 
             }
         });
+        defaultFabIcon = android.R.drawable.ic_input_add;
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -307,6 +309,16 @@ public class MainActivity extends AppCompatActivity
     //TODO: Find what this would be used by and for!
     public void onFragmentInteraction(Uri uri) {
 
+    }
+
+    @Override
+    public void changeFabIcon(int id) {
+        fab.setImageResource(id);
+    }
+
+    @Override
+    public void defaultFabIcon() {
+        fab.setImageResource(defaultFabIcon);
     }
 
     @Override

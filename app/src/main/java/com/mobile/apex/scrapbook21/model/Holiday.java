@@ -1,10 +1,7 @@
 package com.mobile.apex.scrapbook21.model;
 
-import android.content.Context;
-
-import com.mobile.apex.scrapbook21.R;
-
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -14,13 +11,13 @@ import java.util.Date;
 public class Holiday implements Serializable {
     private String title;
     private String notes;
-    private Date startDate;
+    private SimpleDateFormat startDate;
     private Date endDate;
 
-    public Holiday(String title, String notes/**, Date startDate, Date endDate*/) {
+    public Holiday(String title, String notes, SimpleDateFormat startDate /**, Date endDate*/) {
         this.title = title;
         this.notes = notes;
-        //this.startDate = startDate;
+        this.startDate = startDate;
         //this.endDate = endDate;
         //startDate = context.getString(R.string.start_date);
         //endDate = context.getString(R.string.end_date);
@@ -42,11 +39,11 @@ public class Holiday implements Serializable {
         this.notes = notes;
     }
 
-    public Date getStartDate() {
+    public SimpleDateFormat getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(SimpleDateFormat startDate) {
         this.startDate = startDate;
     }
 
@@ -56,5 +53,8 @@ public class Holiday implements Serializable {
 
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
+    }
+
+    public void setStartDate(Date time) {
     }
 }

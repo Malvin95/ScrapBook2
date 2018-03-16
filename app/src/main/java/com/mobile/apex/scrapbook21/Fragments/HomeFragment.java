@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.mobile.apex.scrapbook21.FABInterface;
 import com.mobile.apex.scrapbook21.R;
 
 
@@ -93,6 +94,21 @@ public class HomeFragment extends Fragment {
         mListener = null;
     }
 
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+        mListener.toggleFAB();
+    }
+
+
+    @Override
+    public void onPause()
+    {
+        super.onPause();
+        mListener.toggleFAB();
+    }
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -103,7 +119,7 @@ public class HomeFragment extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnHomeFragmentInteractionListener {
+    public interface OnHomeFragmentInteractionListener extends FABInterface{
         // TODO: Update argument type and name
         void onHomeFragmentInteraction(Uri uri);
     }
