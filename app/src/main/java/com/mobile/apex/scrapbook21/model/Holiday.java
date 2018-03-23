@@ -2,6 +2,8 @@ package com.mobile.apex.scrapbook21.model;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
+import java.time.Month;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -11,14 +13,14 @@ import java.util.Date;
 public class Holiday implements Serializable {
     private String title;
     private String notes;
-    private SimpleDateFormat startDate;
-    private Date endDate;
+    private Calendar startDate;
+    private Calendar endDate;
 
-    public Holiday(String title, String notes, SimpleDateFormat startDate /**, Date endDate*/) {
+    public Holiday(String title, String notes) {
         this.title = title;
         this.notes = notes;
-        this.startDate = startDate;
-        //this.endDate = endDate;
+        this.startDate = Calendar.getInstance();
+        this.endDate = Calendar.getInstance();;
         //startDate = context.getString(R.string.start_date);
         //endDate = context.getString(R.string.end_date);
     }
@@ -39,22 +41,33 @@ public class Holiday implements Serializable {
         this.notes = notes;
     }
 
-    public SimpleDateFormat getStartDate() {
+    public Calendar getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(SimpleDateFormat startDate) {
+    public void setStartDate(Calendar startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public Calendar getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(Calendar endDate) {
         this.endDate = endDate;
     }
 
-    public void setStartDate(Date time) {
+    public void setStartDate(int day, int month, int year) {
+        startDate.set(day, month, year);
+    }
+
+    public String formatStartDate()
+    {
+        int year = startDate.get(Calendar.YEAR);
+        int month = startDate.get(Calendar.MONTH);
+        int day = startDate.get(Calendar.DAY_OF_MONTH);
+
+        return ""+day+"/"+month+"/"+year;
+
     }
 }

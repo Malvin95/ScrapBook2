@@ -3,6 +3,7 @@ package com.mobile.apex.scrapbook21.Fragments;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -18,6 +19,8 @@ import com.mobile.apex.scrapbook21.R;
 import com.mobile.apex.scrapbook21.model.FABresponse;
 import com.mobile.apex.scrapbook21.model.Holiday;
 import com.mobile.apex.scrapbook21.model.HolidayData;
+
+import static android.widget.Toast.*;
 
 
 /**
@@ -43,6 +46,7 @@ public class HolidayDetailsFragment extends Fragment implements FABresponse {
     private EditText titleField;
     private EditText notesField;
     private Button Save;
+    private Button startDate;
     public HolidayData HolidayD;
 
     public HolidayDetailsFragment() {
@@ -87,6 +91,15 @@ public class HolidayDetailsFragment extends Fragment implements FABresponse {
         titleField.addTextChangedListener(titleWatcher);
         notesField = (EditText) view.findViewById(R.id.notesView);
         notesField.addTextChangedListener(titleWatcher);
+        startDate = (Button) view.findViewById(R.id.startButton);
+        startDate.setText(holiday.formatStartDate());
+        startDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDatePickerDialog(v);
+            }
+        });
+
         //sDateField = (EditText) view.findViewById(R.id.s)
 
         //holiday = new Holiday():
@@ -168,7 +181,14 @@ public class HolidayDetailsFragment extends Fragment implements FABresponse {
     {
         //Log.i("TAG", "FABClick Works to save HolidayDetails.Fragment");
         HolidayData.getInstance().getAllHolidays().add(holiday);
-        Toast.makeText(this, "Saved", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "Saved", LENGTH_LONG).show();
+    }
+
+    public void showDatePickerDialog(View v)
+    {
+        DatePickerFragment newFragment = new DatePickerFragment();
+        newFragment.setHoliday(holiday);
+        newFragment.show(getActivity().getSupportFragmentManager(), "datePicker");
     }
 
     /**

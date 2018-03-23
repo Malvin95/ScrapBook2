@@ -2,26 +2,28 @@ package com.mobile.apex.scrapbook21.Fragments;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 
-import com.mobile.apex.scrapbook21.R;
 import com.mobile.apex.scrapbook21.model.Holiday;
 
 import java.util.Calendar;
-import java.util.Date;
 
 public class DatePickerFragment extends DialogFragment
                 implements DatePickerDialog.OnDateSetListener{
     private Holiday holiday;
+
+    public void setHoliday(Holiday holiday) {
+        this.holiday = holiday;
+    }
+
+    public void setStartDate(Button startDate) {
+        this.startDate = startDate;
+    }
+
+    private Button startDate;
     // boolean for setting the start date or end date
     // button to put the date in text format on the button
 
@@ -44,13 +46,10 @@ public class DatePickerFragment extends DialogFragment
 
     // set boolean method
 
-    public void onDateSet(DatePicker view, int year, int month, int day)
+    public void onDateSet(DatePicker view, int day, int month, int year)
     {
-        //Do something with the date chosen by the user
-        Calendar c  = Calendar.getInstance();
-        c.set(year, month, day);
         // if boolean is true we set start date
-        holiday.setStartDate(c.getTime());
+        holiday.setStartDate(day, month, year);
         // else set end date
     }
 

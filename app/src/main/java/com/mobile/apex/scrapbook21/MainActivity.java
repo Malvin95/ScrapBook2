@@ -266,7 +266,7 @@ public class MainActivity extends AppCompatActivity
     {
         //Toast.makeText(this, "You clicked " + item.toString(), Toast.LENGTH_LONG).show();
         //Create the new fragment
-        HolidayDetailsFragment newFragment = HolidayDetailsFragment.newInstance(item);
+        HolidayDetailsFragment newFragment = HolidayDetailsFragment.newInstance(item, useFAB);
         // add an argument specifying the item it should show
         // note that the DummyItem class must implement Serializable
         //Bundle args = new Bundle();
@@ -398,10 +398,10 @@ public class MainActivity extends AppCompatActivity
         } // switch
     }
 
-    public void showDatePickerDialog(View v) {
+    /*public void showDatePickerDialog(View v) {
         DialogFragment newFragment = new DatePickerFragment();
         newFragment.show(getSupportFragmentManager(), "datePicker");
-    }
+    }*/
 
     @Override
     public void toggleFAB(){
