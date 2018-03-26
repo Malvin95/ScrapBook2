@@ -46,7 +46,7 @@ public class HolidayDate implements Serializable {
         this.year = year;
     }
 
-    public String formatDate()
+    public String formatDataDate()
     {
         Calendar calendar = Calendar.getInstance();
         calendar.set(this.day, this.month, this.year);
@@ -57,7 +57,7 @@ public class HolidayDate implements Serializable {
 
     public String toString()
     {
-        return formatDate();
+        return formatDataDate();
     }
 
 }

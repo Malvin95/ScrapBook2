@@ -45,29 +45,56 @@ public class Holiday implements Serializable {
         return startDate;
     }
 
-    public void setStartDate(Calendar startDate) {
+    /**
+    public void setDateButton(Calendar startDate) {
         this.startDate = startDate;
+    }
+    */
+
+    public void setStartDate(int day, int month, int year) {
+        startDate.set(day, month, year);
     }
 
     public Calendar getEndDate() {
         return endDate;
     }
 
+    /**
     public void setEndDate(Calendar endDate) {
         this.endDate = endDate;
     }
+    */
 
-    public void setStartDate(int day, int month, int year) {
-        startDate.set(day, month, year);
+    public void setEndDate(int day, int month, int year) {
+        endDate.set(day, month, year);
     }
 
-    public String formatStartDate()
+    public String formatDate(boolean isStart)
     {
+        /**
         int year = startDate.get(Calendar.YEAR);
         int month = startDate.get(Calendar.MONTH);
         int day = startDate.get(Calendar.DAY_OF_MONTH);
+         */
 
-        return ""+day+"/"+month+"/"+year;
+        if(isStart)
+        {
+            int year = startDate.get(Calendar.YEAR);
+            int month = startDate.get(Calendar.MONTH);
+            int day = startDate.get(Calendar.DAY_OF_MONTH);
+
+            return ""+day+"/"+month+"/"+year;
+        }
+        else
+        {
+            int year = endDate.get(Calendar.YEAR);
+            int month = endDate.get(Calendar.MONTH);
+            int day = endDate.get(Calendar.DAY_OF_MONTH);
+
+            return ""+day+"/"+month+"/"+year;
+        }
+
+        //return ""+day+"/"+month+"/"+year;
 
     }
 }

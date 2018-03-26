@@ -3,7 +3,6 @@ package com.mobile.apex.scrapbook21.Fragments;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -20,7 +19,7 @@ import com.mobile.apex.scrapbook21.model.FABresponse;
 import com.mobile.apex.scrapbook21.model.Holiday;
 import com.mobile.apex.scrapbook21.model.HolidayData;
 
-import static android.widget.Toast.*;
+import static android.widget.Toast.LENGTH_LONG;
 
 
 /**
@@ -47,6 +46,7 @@ public class HolidayDetailsFragment extends Fragment implements FABresponse {
     private EditText notesField;
     private Button Save;
     private Button startDate;
+    private Button endDate;
     public HolidayData HolidayD;
 
     public HolidayDetailsFragment() {
@@ -92,11 +92,19 @@ public class HolidayDetailsFragment extends Fragment implements FABresponse {
         notesField = (EditText) view.findViewById(R.id.notesView);
         notesField.addTextChangedListener(titleWatcher);
         startDate = (Button) view.findViewById(R.id.startButton);
-        startDate.setText(holiday.formatStartDate());
+        startDate.setText(holiday.formatDate(true));
         startDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showDatePickerDialog(v);
+                showDatePickerDialog(v,true);
+            }
+        });
+        endDate = (Button) view.findViewById(R.id.endButton);
+        endDate.setText(holiday.formatDate(false));
+        endDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDatePickerDialog(v,false);
             }
         });
 
@@ -155,7 +163,7 @@ public class HolidayDetailsFragment extends Fragment implements FABresponse {
     @Override
     public void onDetach() {
         super.onDetach();
-        //mListener.defaultFabIcon();
+        mListener.defaultFabIcon();
         mListener = null;
 
     }
@@ -181,13 +189,26 @@ public class HolidayDetailsFragment extends Fragment implements FABresponse {
     {
         //Log.i("TAG", "FABClick Works to save HolidayDetails.Fragment");
         HolidayData.getInstance().getAllHolidays().add(holiday);
-        //Toast.makeText(this, "Saved", LENGTH_LONG).show();
+        Toast.makeText(getContext(), "Saved", LENGTH_LONG).show();
     }
 
-    public void showDatePickerDialog(View v)
+    public void showDatePickerDialog(View v, boolean isStartDate)
     {
         DatePickerFragment newFragment = new DatePickerFragment();
         newFragment.setHoliday(holiday);
+
+        if(isStartDate)
+        {
+            Log.i("Info", "Setting the Start Date Button");
+            newFragment.setDateButton(startDate);
+        }
+        else
+        {
+            Log.i("info", "setting End Date Button");
+            newFragment.setDateButton(endDate);
+        }
+
+        newFragment.setStart(isStartDate);
         newFragment.show(getActivity().getSupportFragmentManager(), "datePicker");
     }
 
