@@ -10,7 +10,6 @@ import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
@@ -28,13 +27,13 @@ import android.widget.Toast;
 import android.support.v4.app.Fragment;
 
 import com.mobile.apex.scrapbook21.Fragments.CalendarFragment;
-import com.mobile.apex.scrapbook21.Fragments.DatePickerFragment;
 import com.mobile.apex.scrapbook21.Fragments.EventsFragment;
 import com.mobile.apex.scrapbook21.Fragments.HolidayDetailsFragment;
 import com.mobile.apex.scrapbook21.Fragments.HolidayFragment;
 import com.mobile.apex.scrapbook21.Fragments.HomeFragment;
 import com.mobile.apex.scrapbook21.Fragments.PhotoFragment;
 import com.mobile.apex.scrapbook21.Fragments.ScrapbookFragment;
+import com.mobile.apex.scrapbook21.Fragments.WorldViewFragment;
 import com.mobile.apex.scrapbook21.model.FABresponse;
 import com.mobile.apex.scrapbook21.model.Holiday;
 
@@ -53,7 +52,8 @@ public class MainActivity extends AppCompatActivity
         ScrapbookFragment.OnScrapbookFragmentInteractionListener,
         EventsFragment.OnEventsFragmentInteractionListener,
         HolidayDetailsFragment.OnHolidayDetailsFragmentInteractionListener,
-        PhotoFragment.OnPhotoFragmentInteractionListener
+        PhotoFragment.OnPhotoFragmentInteractionListener,
+        WorldViewFragment.OnWorldViewFragmentInteractionListener
 {
 
     private String mCurrentPhotoPath;
@@ -236,6 +236,8 @@ public class MainActivity extends AppCompatActivity
         else if (id == R.id.nav_worldView)
         {
             Toast.makeText(this, "I clicked the WorldView option", Toast.LENGTH_LONG).show();
+            WorldViewFragment worldViewFragment = new WorldViewFragment();
+            insertDefaultFragment(worldViewFragment);
         }
         else if (id == R.id.nav_camera)
         {
@@ -298,6 +300,11 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onScrapbookFragmentInteraction(Uri uri) {
         Toast.makeText(this, "You clicked Scrapbook", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onWorldViewFragmentInteraction(Uri uri) {
+
     }
 
     @Override

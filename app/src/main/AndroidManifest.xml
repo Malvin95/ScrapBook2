@@ -2,17 +2,24 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.mobile.apex.scrapbook21">
 
-    <uses-feature android:name="android.hardware.camera"/>
+    <uses-feature android:name="android.hardware.camera" />
 
-    <!--The code that gives permission for camera use, and for permission to
+    <!--
+         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+         Google Maps Android API v2, but you must specify either coarse or fine
+         location permissions for the 'MyLocation' functionality. 
+    -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <!--
+The code that gives permission for camera use, and for permission to
             write to external storage.  !*MAY NOT BE NECESSARY*!
 
 
 
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-        -->
-
+    -->
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -30,6 +37,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.mobile.apex.scrapbook21.fileprovider"
@@ -37,14 +45,27 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/filepaths">
-            </meta-data>
-
-            <meta-data
-                android:name="com.google.android.geo.API_Key"
-                android:value="AIzaSyCNzrCz-U8rX5y2m2jlRuElt3d7BmwiiG4"
-            />
+                android:resource="@xml/filepaths" />
         </provider>
+
+        <!-- Places API Key -->
+        <meta-data
+            android:name="com.google.android.geo.API_Key"
+            android:value="AIzaSyCNzrCz-U8rX5y2m2jlRuElt3d7BmwiiG4" />
+
+        <!-- Maps API Key -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyC0v3ZixFPqeVQtbKXgR7vqgs97yoT43b4" />
+
+        <!-- Google Play Services Version -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <activity
+            android:name=".MapsActivity"
+            android:label="@string/title_activity_maps"></activity>
     </application>
 
 </manifest>
