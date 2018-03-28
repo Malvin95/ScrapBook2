@@ -86,7 +86,7 @@ public class WorldViewFragment extends Fragment implements OnMapReadyCallback {
         super.onViewCreated(view, savedInstanceState);
 
         SupportMapFragment mapFragment = (SupportMapFragment)
-                getChildFragmentManager().findFragmentById(R.id.map1);
+                getChildFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
     }
 
