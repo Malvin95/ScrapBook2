@@ -64,4 +64,28 @@
         app:layout_anchor="@+id/map"
         app:layout_anchorGravity="right|top" />
 
+    <ImageView
+        android:id="@+id/place_info"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/relLayout1"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="70dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_info"
+        app:layout_anchor="@+id/relLayout1"
+        app:layout_anchorGravity="left|top" />
+
+    <ImageView
+        android:id="@+id/place_picker"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_below="@id/place_info"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="120dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_map"
+        app:layout_anchor="@+id/map"
+        app:layout_anchorGravity="left|top"/>
+
 </android.support.design.widget.CoordinatorLayout>
