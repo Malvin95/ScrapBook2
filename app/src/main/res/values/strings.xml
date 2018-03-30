@@ -23,4 +23,38 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_worldview">Worldview</string>
     <string name="title_activity_maps">Map</string>
+    <string name="button1">Expand</string>
+    <string name="button2">Collapse</string>
+    <string name="button3">Button 3</string>
+    <string name="sheet_p1">stuff</string>
+    <string name="long_latin">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum fringilla elit sit amet nisi tempus gravida. Sed quis dolor fermentum elit viverra molestie vel id nunc.
+        Sed fermentum dui lorem, id accumsan lorem commodo at. Aliquam sed nulla vestibulum, gravida tortor a, pulvinar odio.
+        Aliquam sed eleifend purus, in suscipit ipsum. Mauris et sodales tortor. Nam dignissim tortor in velit iaculis, et porttitor risus pharetra.
+        Aliquam auctor risus neque, id gravida enim tristique et. Phasellus nec est nec nibh tempus aliquam vitae non nibh. Ut pulvinar viverra risus sit amet pharetra.
+        Praesent commodo vestibulum nunc sed tincidunt. Sed lectus nisl, finibus nec ultrices id, convallis eget urna. Quisque ex eros, euismod ut ullamcorper sit amet, accumsan vitae urna.
+        Praesent ultricies enim nisi, at auctor tellus egestas mollis.Donec finibus felis sit amet scelerisque dictum.
+        Suspendisse et mi elementum odio consequat dignissim. Nulla sodales magna vel velit lobortis aliquet.
+        Sed vitae odio sed arcu interdum commodo. Donec posuere tincidunt sapien, convallis consequat velit laoreet in.
+        Suspendisse maximus consequat metus, et viverra massa commodo a. Cras vitae arcu id dui iaculis eleifend quis et neque.
+        Sed ex massa, pellentesque non suscipit eu, ultricies in urna. Ut lacinia elementum lectus, eu imperdiet lorem ornare non.
+        Maecenas at mauris efficitur, pulvinar massa eget, dignissim dolor. Integer lorem urna, imperdiet et fermentum eu, gravida et lacus.
+        Ut dictum ipsum vitae nibh convallis, ac gravida augue finibus. Morbi iaculis interdum enim, nec hendrerit nisi vehicula in.
+        Proin consequat magna vitae justo ornare, vitae lacinia lorem ullamcorper. Cras placerat sem ut venenatis consectetur.
+        Nulla dignissim, libero quis sagittis elementum, sapien ipsum iaculis lectus, et rhoncus erat dolor at sapien.
+        Donec sem lorem, sodales non lacus ut, scelerisque auctor justo. Sed facilisis tincidunt venenatis.
+        Nullam erat diam, elementum ac efficitur commodo, finibus eu mauris.
+        Nunc pharetra, eros rutrum dignissim porttitor, mauris dolor lacinia mi, auctor posuere sapien magna a tortor.
+        Sed hendrerit mi a odio vestibulum, vel sagittis diam cursus.Nulla eget velit ac mi ullamcorper blandit et nec nisi.
+        Aenean elit leo, mollis non metus non, vestibulum rhoncus ligula.
+        Duis at volutpat magna. Integer rhoncus rhoncus dolor, eget accumsan eros fermentum at.
+        Nam ut posuere risus. Pellentesque faucibus ac sapien at suscipit. Mauris non nisi in mauris hendrerit interdum eu ut nibh.
+        Maecenas quis ipsum eu lorem scelerisque mollis. Praesent aliquet nulla vitae arcu porta molestie.
+        Praesent efficitur a turpis non tincidunt.
+        Duis accumsan faucibus risus eget porttitor.Pellentesque nunc enim, bibendum ut bibendum eget, ullamcorper at orci.
+        Cras sit amet ante varius, dapibus tortor in, tempus metus. Integer id arcu malesuada, sollicitudin magna vitae, convallis mi.
+        Mauris hendrerit dui vel ipsum lobortis volutpat. Aenean vitae viverra nulla.
+        Maecenas rhoncus bibendum diam a fermentum. Phasellus eget libero odio. Quisque mi neque, posuere in ex vel, sagittis tristique sapien.
+        Proin condimentum, sem ut imperdiet consequat, sem mauris ornare purus, eleifend luctus neque ante vel quam.
+    </string>
+
 </resources>

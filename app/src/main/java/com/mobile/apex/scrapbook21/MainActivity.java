@@ -33,7 +33,6 @@ import com.mobile.apex.scrapbook21.Fragments.HolidayFragment;
 import com.mobile.apex.scrapbook21.Fragments.HomeFragment;
 import com.mobile.apex.scrapbook21.Fragments.PhotoFragment;
 import com.mobile.apex.scrapbook21.Fragments.ScrapbookFragment;
-import com.mobile.apex.scrapbook21.Fragments.WorldViewFragment;
 import com.mobile.apex.scrapbook21.model.FABresponse;
 import com.mobile.apex.scrapbook21.model.Holiday;
 
@@ -52,8 +51,7 @@ public class MainActivity extends AppCompatActivity
         ScrapbookFragment.OnScrapbookFragmentInteractionListener,
         EventsFragment.OnEventsFragmentInteractionListener,
         HolidayDetailsFragment.OnHolidayDetailsFragmentInteractionListener,
-        PhotoFragment.OnPhotoFragmentInteractionListener,
-        WorldViewFragment.OnWorldViewFragmentInteractionListener
+        PhotoFragment.OnPhotoFragmentInteractionListener
 {
 
     private String mCurrentPhotoPath;
@@ -235,9 +233,13 @@ public class MainActivity extends AppCompatActivity
         }
         else if (id == R.id.nav_worldView)
         {
-            Toast.makeText(this, "I clicked the WorldView option", Toast.LENGTH_LONG).show();
+            /**Toast.makeText(this, "I clicked the WorldView option", Toast.LENGTH_LONG).show();
             WorldViewFragment worldViewFragment = new WorldViewFragment();
             insertDefaultFragment(worldViewFragment);
+            */
+
+            Intent intent = new Intent(this, MapsActivity.class);
+            startActivity(intent);
         }
         else if (id == R.id.nav_camera)
         {
@@ -300,11 +302,6 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onScrapbookFragmentInteraction(Uri uri) {
         Toast.makeText(this, "You clicked Scrapbook", Toast.LENGTH_LONG).show();
-    }
-
-    @Override
-    public void onWorldViewFragmentInteraction(Uri uri) {
-
     }
 
     @Override

@@ -13,44 +13,36 @@
         android:id="@+id/titleView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/holiday_name"/>
+        android:text="@string/holiday_name" />
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/notesView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:text="@string/holiday_notes" />
 
-        <TextView
-            android:id="@+id/notesView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/holiday_notes"/>
+    <TextView
+        android:id="@+id/startText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/start_text" />
 
-        <TextView
-            android:id="@+id/startText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/start_text"
-            />
-        <Button
-            android:id="@+id/startDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/start_date"
-            />
-        <TextView
-            android:id="@+id/endText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/end_text"
-            />
-        <Button
-            android:id="@+id/endDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/end_date"
-            />
-    </LinearLayout>
+    <Button
+        android:id="@+id/startDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/start_date" />
 
+    <TextView
+        android:id="@+id/endText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/end_text" />
+
+    <Button
+        android:id="@+id/endDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/end_date" />
 
 </LinearLayout>
