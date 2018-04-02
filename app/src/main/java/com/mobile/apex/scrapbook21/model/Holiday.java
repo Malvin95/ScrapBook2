@@ -11,6 +11,7 @@ import java.util.Date;
  */
 
 public class Holiday implements Serializable {
+    private int id;
     private String title;
     private String notes;
     private Calendar startDate;
@@ -23,6 +24,14 @@ public class Holiday implements Serializable {
         this.endDate = Calendar.getInstance();;
         //startDate = context.getString(R.string.start_date);
         //endDate = context.getString(R.string.end_date);
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTitle() {

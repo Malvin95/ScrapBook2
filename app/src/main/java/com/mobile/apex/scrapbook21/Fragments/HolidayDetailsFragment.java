@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.mobile.apex.scrapbook21.Adapters.MyHolidayRecyclerViewAdapter;
 import com.mobile.apex.scrapbook21.R;
 import com.mobile.apex.scrapbook21.model.FABresponse;
 import com.mobile.apex.scrapbook21.model.Holiday;
@@ -60,14 +61,14 @@ public class HolidayDetailsFragment extends Fragment implements FABresponse {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
+     * @param holiday Parameter 1.
      * @return A new instance of fragment HolidayDetailsFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static HolidayDetailsFragment newInstance(Holiday param1, boolean useFAB) {
+    public static HolidayDetailsFragment newInstance(Holiday holiday, boolean useFAB) {
         HolidayDetailsFragment fragment = new HolidayDetailsFragment();
         Bundle args = new Bundle();
-        args.putSerializable(ARG_PARAM1, param1);
+        args.putSerializable(ARG_PARAM1, holiday);
         args.putBoolean(ARG_PARAM2, useFAB);
         fragment.setArguments(args);
         return fragment;
@@ -191,7 +192,20 @@ public class HolidayDetailsFragment extends Fragment implements FABresponse {
     public void FABClick()
     {
         //Log.i("TAG", "FABClick Works to save HolidayDetails.Fragment");
-        HolidayData.getInstance().getAllHolidays().add(holiday);
+        /**
+         * This if statement checks if the list holidays contains the holiday object to be saved.
+         * If it does, then the holiday is saved over.
+         * Else, the holiday is added to the list.
+         */
+        if (HolidayData.getInstance().getAllHolidays().contains(holiday))
+        {
+            HolidayData.getInstance().setHoliday(holiday);
+        }
+        else
+        {
+            HolidayData.getInstance().getAllHolidays().add(holiday);
+        }
+
         Toast.makeText(getContext(), "Saved", LENGTH_LONG).show();
     }
 

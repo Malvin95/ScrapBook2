@@ -11,7 +11,7 @@ import java.util.List;
 public class HolidayData
 {
     private Context context;
-    private Holiday currentHoliday;
+    private Holiday holiday;
     private static HolidayData instance;
     public final List<Holiday> holidays;
 
@@ -19,7 +19,7 @@ public class HolidayData
     {
         this.context = context;
         holidays = new ArrayList<Holiday>();
-        //setCurrentHoliday(new Holiday(context));
+        //setHoliday(new Holiday(context));
     }
 
     public static HolidayData getInstance(Context context)
@@ -44,9 +44,9 @@ public class HolidayData
         return instance;
     }
 
-    public Holiday getCurrentHoliday()
+    public Holiday getHoliday()
     {
-        return currentHoliday;
+        return holiday;
     }
 
     public List<Holiday> getAllHolidays()
@@ -54,8 +54,8 @@ public class HolidayData
         return holidays;
     }
 
-    public void setCurrentHoliday(Holiday currentHoliday)
+    public void setHoliday(Holiday holiday)
     {
-        this.currentHoliday = currentHoliday;
+        this.holiday = holiday;
     }
 }

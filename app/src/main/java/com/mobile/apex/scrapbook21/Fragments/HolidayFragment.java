@@ -80,7 +80,8 @@ public class HolidayFragment extends Fragment
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new MyHolidayRecyclerViewAdapter(HolidayData.getInstance(getActivity().getBaseContext()).getAllHolidays(), mListener));
+            recyclerView.setAdapter(new MyHolidayRecyclerViewAdapter(HolidayData.getInstance(getActivity()
+                    .getBaseContext()).getAllHolidays(), mListener));
         }
         return view;
     }
