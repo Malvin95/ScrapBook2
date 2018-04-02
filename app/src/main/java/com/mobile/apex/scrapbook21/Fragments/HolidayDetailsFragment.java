@@ -1,27 +1,51 @@
 package com.mobile.apex.scrapbook21.Fragments;
 
+import android.Manifest;
 import android.content.Context;
+import android.location.Address;
+import android.location.Geocoder;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.view.inputmethod.EditorInfo;
+import android.widget.AdapterView;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.mobile.apex.scrapbook21.Adapters.MyHolidayRecyclerViewAdapter;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.PendingResult;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.places.AutocompletePrediction;
+import com.google.android.gms.location.places.PlaceBuffer;
+import com.google.android.gms.location.places.Places;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.mobile.apex.scrapbook21.Adapters.PlacesAutoCompleteAdapter;
+import com.mobile.apex.scrapbook21.MapsActivity;
 import com.mobile.apex.scrapbook21.R;
 import com.mobile.apex.scrapbook21.model.FABresponse;
 import com.mobile.apex.scrapbook21.model.Holiday;
 import com.mobile.apex.scrapbook21.model.HolidayData;
+import com.mobile.apex.scrapbook21.model.PlaceInfo;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import static android.widget.Toast.LENGTH_LONG;
 
@@ -34,7 +58,11 @@ import static android.widget.Toast.LENGTH_LONG;
  * Use the {@link HolidayDetailsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class HolidayDetailsFragment extends Fragment implements FABresponse {
+public class HolidayDetailsFragment extends Fragment
+        implements FABresponse {
+
+    private static final String TAG = "HolidayDetailsFragment";
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "Item";
@@ -46,12 +74,17 @@ public class HolidayDetailsFragment extends Fragment implements FABresponse {
 
     private OnHolidayDetailsFragmentInteractionListener mListener;
 
+    private AutoCompleteTextView mSearchText;
+
     private EditText titleField;
     private EditText notesField;
     private Button Save;
     private Button startDate;
     private Button endDate;
     public HolidayData HolidayD;
+
+    //MAPSACTIVITY variables
+    private PlacesAutoCompleteAdapter mPlacesAutoCompleteAdapter;
 
     public HolidayDetailsFragment() {
         // Required empty public constructor
@@ -112,9 +145,8 @@ public class HolidayDetailsFragment extends Fragment implements FABresponse {
             }
         });
 
-        //sDateField = (EditText) view.findViewById(R.id.s)
-
-        //holiday = new Holiday():
+        mSearchText = (AutoCompleteTextView) view.findViewById(R.id.hdf_input_search);
+        mSearchText.setAdapter(mPlacesAutoCompleteAdapter);
 
         return view;
     }

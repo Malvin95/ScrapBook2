@@ -6,9 +6,7 @@ import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
-import android.nfc.Tag;
 import android.support.annotation.NonNull;
-import android.support.design.widget.BottomSheetBehavior;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
@@ -20,8 +18,6 @@ import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
-import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -80,14 +76,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private PlacesAutoCompleteAdapter mPlacesAutoCompleteAdapter;
     private GoogleApiClient mGoogleApiClient;
     private GoogleMap mMap;
-    private PlaceInfo mPlace;
+    private PlaceInfo mPlaceInfo;
     private Marker mMarker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
-        mSearchText = (AutoCompleteTextView) findViewById(R.id.input_search);
+        mSearchText = (AutoCompleteTextView) findViewById(R.id.hdf_input_search);
         mGps = (ImageView) findViewById(R.id.ic_LocationGps);
         mInfo = (ImageView)findViewById(R.id.place_info);
         mPlacePicker = (ImageView)findViewById(R.id.place_picker);
@@ -211,7 +207,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     }
                     else
                     {
-                        Log.d(TAG, "onCLick: place info: " + mPlace.toString());
+                        Log.d(TAG, "onCLick: place info: " + mPlaceInfo.toString());
                         mMarker.showInfoWindow();
                     }
                 }
@@ -445,17 +441,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
             try
             {
-                mPlace = new PlaceInfo();
-                mPlace.setName(place.getName().toString());
-                mPlace.setAddress(place.getAddress().toString());
-                //mPlace.setAttributions(place.getAttributions().toString());
-                mPlace.setPhoneNumber(place.getPhoneNumber().toString());
-                mPlace.setWebsiteUri(place.getWebsiteUri());
-                mPlace.setId(place.getId());
-                mPlace.setLatlng(place.getLatLng());
-                mPlace.setRating(place.getRating());
+                mPlaceInfo = new PlaceInfo();
+                mPlaceInfo.setName(place.getName().toString());
+                mPlaceInfo.setAddress(place.getAddress().toString());
+                //mPlaceInfo.setAttributions(place.getAttributions().toString());
+                mPlaceInfo.setPhoneNumber(place.getPhoneNumber().toString());
+                mPlaceInfo.setWebsiteUri(place.getWebsiteUri());
+                mPlaceInfo.setId(place.getId());
+                mPlaceInfo.setLatlng(place.getLatLng());
+                mPlaceInfo.setRating(place.getRating());
 
-                Log.d(TAG, "onReuslt: place: " + mPlace.toString());
+                Log.d(TAG, "onReuslt: place: " + mPlaceInfo.toString());
 
             }
             catch(NullPointerException e)
@@ -464,7 +460,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
 
             moveCamera(new LatLng(place.getViewport().getCenter().latitude,
-                    place.getViewport().getCenter().longitude), DEFAULT_ZOOM, mPlace);
+                    place.getViewport().getCenter().longitude), DEFAULT_ZOOM, mPlaceInfo);
 
             places.release();
         }

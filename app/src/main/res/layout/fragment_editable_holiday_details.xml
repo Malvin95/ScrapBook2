@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -26,35 +27,78 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginVertical="30dp"
+        android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/startText"
+            android:id="@+id/start_text"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/start_text" />
+            android:layout_height="match_parent"
+            android:text="@string/start_text"
+            android:gravity="center"/>
 
         <Button
             android:id="@+id/startButton"
-            android:layout_width="wrap_content"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:onClick="showDatePickerDialog"
-            android:text="@string/start_text" />
+            android:gravity="center"
+            android:text="@string/start_text"
+            android:onClick="showDatePickerDialog" />
 
         <TextView
-            android:id="@+id/endText"
+            android:id="@+id/end_text"
+            android:text="@string/end_text"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/end_text" />
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_marginLeft="5dp"/>
 
         <Button
             android:id="@+id/endButton"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/end_text"
+            android:onClick="showDatePickerDialog" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <TextView
+            android:text="Location: "
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="showDatePickerDialog"
-            android:text="@string/end_text" />
-        -->
+            android:gravity="center"
+            android:layout_marginLeft="5dp"/>
+
+        <AutoCompleteTextView
+            android:id="@+id/hdf_input_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/ic_magnify"
+            android:hint="Enter Address, City or Area Code"
+            android:imeOptions="actionSearch"
+            android:textColor="#000"
+            android:textSize="15sp" />
+
     </LinearLayout>
+
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:map="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_margin="8dp"
+        tools:context="com.mobile.apex.scrapbook21.MapsActivity" />
 
 </LinearLayout>

@@ -44,7 +44,7 @@
             android:textSize="15sp"
             android:textColor="#000"
             android:layout_marginLeft="10dp"
-            android:id="@+id/input_search"
+            android:id="@+id/hdf_input_search"
             android:background="@null"
             android:hint="Enter Address, City or Area Code"
             android:imeOptions="actionSearch"
