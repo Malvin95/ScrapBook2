@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,29 +10,37 @@
     tools:context="com.mobile.apex.scrapbook21.MainActivity">
     <!-- tools:showIn="@layout/activity_main"> -->
 
-    <TextView
+    <EditText
         android:id="@+id/titleView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/holiday_name" />
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="5dp"
+        android:hint="Name your Holiday"
+        android:textColorHint="#797979"
+        android:inputType="text|number" />
 
-    <TextView
+    <EditText
         android:id="@+id/notesView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/holiday_notes" />
+        android:layout_marginBottom="5dp"
+        android:hint="What do you plan to do?"
+        android:textColorHint="#797979"
+        android:inputType="text|number" />
 
     <TextView
         android:id="@+id/startText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/start_text" />
+        android:text="@string/start_text"/>
 
     <Button
         android:id="@+id/startDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/start_date" />
+        android:layout_gravity="bottom"
+        android:hint="@string/start_date" />
 
     <TextView
         android:id="@+id/endText"
@@ -43,6 +52,7 @@
         android:id="@+id/endDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/end_date" />
+        android:hint="@string/end_date"
+        android:gravity="end" />
 
 </LinearLayout>

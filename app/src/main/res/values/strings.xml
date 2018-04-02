@@ -9,13 +9,13 @@
     <string name="nav_home">list of interesting stuff</string>
 
 
-    <string name="holiday_name">Whats the name of the Holiday?</string>
-    <string name="holiday_notes">Any thoughts of the trip?</string>
-    <string name="start_text">Start date:</string>
-    <string name="end_text">End Date:</string>
+    <string name="holiday_name"></string>
+    <string name="holiday_notes"></string>
+    <string name="start_text">Start date</string>
+    <string name="end_text">End Date</string>
     <string name="start_date">Start Date</string>
     <string name="end_date">End Date</string>
-    <string name="title_activity_scrap_nav">ScrapNav</string>
+    <string name="title_activity_scrap_nav">ScrapBook</string>
     <string name="btnIntend">Take Photo</string>
     <string name="cannot">cannot</string>
 
@@ -25,7 +25,6 @@
     <string name="title_activity_maps">Map</string>
     <string name="button1">Expand</string>
     <string name="button2">Collapse</string>
-    <string name="button3">Button 3</string>
     <string name="sheet_p1">stuff</string>
     <string name="long_latin">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum fringilla elit sit amet nisi tempus gravida. Sed quis dolor fermentum elit viverra molestie vel id nunc.
         Sed fermentum dui lorem, id accumsan lorem commodo at. Aliquam sed nulla vestibulum, gravida tortor a, pulvinar odio.
