@@ -15,14 +15,14 @@
         android:id="@+id/titleView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/holiday_name"
+        android:hint="@string/holiday_name"
         android:textColor="@android:color/darker_gray" />
 
     <EditText
         android:id="@+id/notesView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/holiday_notes"
+        android:hint="@string/holiday_notes"
         android:textColor="@android:color/darker_gray" />
 
     <LinearLayout
@@ -87,7 +87,9 @@
             android:hint="Enter Address, City or Area Code"
             android:imeOptions="actionSearch"
             android:textColor="#000"
-            android:textSize="15sp" />
+            android:textSize="15sp"
+            android:inputType="text"
+            />
 
     </LinearLayout>
 

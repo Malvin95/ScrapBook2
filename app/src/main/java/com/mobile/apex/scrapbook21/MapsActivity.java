@@ -177,10 +177,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 if(actionId == EditorInfo.IME_ACTION_SEARCH
                         || actionId == EditorInfo.IME_ACTION_DONE
                         || keyEvent.getAction() == KeyEvent.KEYCODE_ENTER
-                        /**|| keyEvent.getAction() == KeyEvent.ACTION_DOWN*/)
+                        || keyEvent.getAction() == KeyEvent.ACTION_DOWN)
                 {
                     //execute our method for searching
                     geoLocate();
+                    hideSoftKeyboard();
                 }
 
                 return false;
