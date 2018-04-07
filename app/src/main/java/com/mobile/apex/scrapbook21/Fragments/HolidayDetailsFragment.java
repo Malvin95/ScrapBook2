@@ -134,6 +134,13 @@ public class HolidayDetailsFragment extends Fragment
             holiday = (Holiday)getArguments().getSerializable(ARG_PARAM1);
             useFAB = getArguments().getBoolean(ARG_PARAM2);
         }
+
+        mGoogleApiClient = new GoogleApiClient
+                .Builder(getActivity())
+                .addApi(Places.GEO_DATA_API)
+                .addApi(Places.PLACE_DETECTION_API)
+                .enableAutoManage(getActivity(), this)
+                .build();
     }
 
     @Override
@@ -230,15 +237,43 @@ public class HolidayDetailsFragment extends Fragment
     {
         Log.d(TAG, "Holiday Fragment Initialising");
 
-        mGoogleApiClient = new GoogleApiClient
-                .Builder(getActivity())
-                .addApi(Places.GEO_DATA_API)
-                .addApi(Places.PLACE_DETECTION_API)
-                .enableAutoManage(getActivity(), this)
-                .build();
+        titleField.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-        titleField.addTextChangedListener(titleWatcher);
-        notesField.addTextChangedListener(titleWatcher);
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                holiday.setTitle(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        titleField.setText(holiday.getTitle());
+
+        notesField.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                holiday.setNotes(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        notesField.setText(holiday.getNotes());
 
         startDate.setText(holiday.formatDate(true));
         startDate.setOnClickListener(new View.OnClickListener() {
@@ -365,33 +400,6 @@ public class HolidayDetailsFragment extends Fragment
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     }
 
-    private final TextWatcher titleWatcher = new TextWatcher()
-    {
-
-        @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-        }
-
-        @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
-        }
-
-        @Override
-        public void afterTextChanged(Editable s) {
-            if (s.length() == 0) {
-                //Once the text is changed call the FAB and make it a save button instead
-            } else {
-            }
-
-
-            String holidayTitle = titleField.getText().toString();
-            holiday.setTitle(holidayTitle);
-
-            String notes = notesField.getText().toString();
-            holiday.setNotes(notes);
-        }
-    };
-
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
@@ -416,7 +424,16 @@ public class HolidayDetailsFragment extends Fragment
         super.onDetach();
         mListener.defaultFabIcon();
         mListener = null;
+    }
 
+    @Override
+    public void onStop()
+    {
+        super.onStop();
+        if (mGoogleApiClient != null && mGoogleApiClient.isConnected()) {
+            mGoogleApiClient.stopAutoManage(getActivity());
+            mGoogleApiClient.disconnect();
+        }
     }
 
     @Override

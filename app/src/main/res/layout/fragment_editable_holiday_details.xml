@@ -6,30 +6,43 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="5dp"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.mobile.apex.scrapbook21.MainActivity">
     <!-- tools:showIn="@layout/activity_main"> -->
 
-    <EditText
-        android:id="@+id/titleView"
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/holiday_name"
-        android:textColor="@android:color/darker_gray" />
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        app:srcCompat="@drawable/cast_expanded_controller_bg_gradient_light" />
 
-    <EditText
-        android:id="@+id/notesView"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/holiday_notes"
-        android:textColor="@android:color/darker_gray" />
+        android:layout_marginTop="5dp"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/titleView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Holiday Name"
+            android:textColor="@android:color/darker_gray" />
+
+        <EditText
+            android:id="@+id/notesView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Any Notes?"
+            android:textColor="@android:color/darker_gray" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginVertical="30dp"
+        android:layout_marginVertical="20dp"
+        android:padding="10dp"
         android:orientation="horizontal">
 
         <TextView
@@ -41,7 +54,7 @@
 
         <Button
             android:id="@+id/startButton"
-            android:layout_width="120dp"
+            android:layout_width="110dp"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/start_text"
@@ -57,7 +70,7 @@
 
         <Button
             android:id="@+id/endButton"
-            android:layout_width="120dp"
+            android:layout_width="110dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@string/end_text"
@@ -94,10 +107,9 @@
     </LinearLayout>
 
     <com.google.android.gms.maps.MapView
+        android:id="@+id/mapView"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:layout_margin="8dp"
-        android:id="@+id/mapView">
-    </com.google.android.gms.maps.MapView>
+        android:layout_height="125dp"
+        android:layout_gravity="center|bottom"></com.google.android.gms.maps.MapView>
 
 </LinearLayout>
