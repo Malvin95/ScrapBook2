@@ -1,8 +1,17 @@
 package com.mobile.apex.scrapbook21.model;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Environment;
 
 import com.google.android.gms.maps.model.LatLng;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Random;
 
 /**
  * Created by malvin on 30/03/18.
@@ -18,9 +27,14 @@ public class PlaceInfo {
     private LatLng latlng;
     private float rating;
     private String attributions;
+    private String photoRef;
+
+    private static final String PHOTOREF_PREFIX = "BMP_";
+    private static final String PHOTOREF_SUFFIX = ".bmp";
+    private String mRefPhotoPath;
 
     public PlaceInfo(String name, String address, String phoneNumber, String id, Uri websiteUri,
-                     LatLng latlng, float rating, String attributions)
+                     LatLng latlng, float rating, String attributions, String photoRef)
     {
         this.name = name;
         this.address = address;
@@ -30,6 +44,7 @@ public class PlaceInfo {
         this.latlng = latlng;
         this.rating = rating;
         this.attributions = attributions;
+        this.photoRef = photoRef;
     }
 
     public PlaceInfo() {
@@ -112,5 +127,48 @@ public class PlaceInfo {
                 ", rating=" + rating +
                 ", attributions='" + attributions + '\'' +
                 '}';
+    }
+
+    /**
+    public Bitmap getPhotoRef() {
+        return photoRef;
+    }
+     */
+
+    public String getPhotoRef() {
+        return photoRef;
+    }
+
+    public void setPhotoRef(Bitmap photoRef) throws IOException
+    {
+
+        String root = Environment.getExternalStorageDirectory().toString();
+        File myDir = new File(root + "/reference_images");
+        myDir.mkdirs();
+
+        String imageFileName = PHOTOREF_PREFIX + "_";
+        //File image = File.createTempFile(imageFileName,PHOTOREF_SUFFIX,myDir);
+
+        Random generator = new Random();
+        int n = 10000;
+        n = generator.nextInt(n);
+        String image = imageFileName + n + PHOTOREF_SUFFIX;
+
+        //Save a file: path for use with ACTION_VIEW intents
+        // = image.getAbsolutePath();
+
+        File file = new File (myDir, image);
+        if (file.exists ()) file.delete ();
+        try
+        {
+            FileOutputStream out = new FileOutputStream(file);
+            photoRef.compress(Bitmap.CompressFormat.JPEG, 90, out);
+            //this.photoRef = photoRef;
+            out.flush();
+            //out.close();
+          } catch (Exception e) {
+          e.printStackTrace();
+          }
+        //this.photoRef = photoRef;
     }
 }

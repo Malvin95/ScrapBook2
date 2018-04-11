@@ -3,6 +3,9 @@ package com.mobile.apex.scrapbook21.Fragments;
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -24,6 +27,7 @@ import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,8 +38,14 @@ import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.places.AutocompletePrediction;
+import com.google.android.gms.location.places.GeoDataClient;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.PlaceBuffer;
+import com.google.android.gms.location.places.PlaceDetectionClient;
+import com.google.android.gms.location.places.PlacePhotoMetadata;
+import com.google.android.gms.location.places.PlacePhotoMetadataBuffer;
+import com.google.android.gms.location.places.PlacePhotoMetadataResponse;
+import com.google.android.gms.location.places.PlacePhotoResponse;
 import com.google.android.gms.location.places.Places;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -50,7 +60,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.mobile.apex.scrapbook21.Adapters.CustomInfoWindowAdapter;
 import com.mobile.apex.scrapbook21.Adapters.PlacesAutoCompleteAdapter;
-import com.mobile.apex.scrapbook21.MapsActivity;
 import com.mobile.apex.scrapbook21.R;
 import com.mobile.apex.scrapbook21.model.FABresponse;
 import com.mobile.apex.scrapbook21.model.Holiday;
@@ -58,6 +67,7 @@ import com.mobile.apex.scrapbook21.model.HolidayData;
 import com.mobile.apex.scrapbook21.model.PlaceInfo;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -77,6 +87,9 @@ public class HolidayDetailsFragment extends Fragment
     private static final LatLngBounds LAT_LNG_BOUNDS = new LatLngBounds(
             new LatLng(-50, -198), new LatLng(56, 154));
 
+    private GeoDataClient mGeoDataClient;
+    private PlaceDetectionClient mPlaceDetectionClient;
+
     // TODO: Rename and change types of parameters
     private Holiday holiday;
     private boolean useFAB;
@@ -86,9 +99,11 @@ public class HolidayDetailsFragment extends Fragment
     //-----------------------------------MAP Widgets-----------------------------\\
     private AutoCompleteTextView mSearchText;
     private GoogleApiClient mGoogleApiClient;
+    //private GeoDataApi mGeoDataAPI;
 
     private EditText titleField;
     private EditText notesField;
+    private ImageView headerImage;
     private Button Save;
     private Button startDate;
     private Button endDate;
@@ -149,12 +164,14 @@ public class HolidayDetailsFragment extends Fragment
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_editable_holiday_details, container, false);
 
+        headerImage = (ImageView) view.findViewById(R.id.header_image);
         titleField = (EditText) view.findViewById(R.id.titleView);
         notesField = (EditText) view.findViewById(R.id.notesView);
         startDate = (Button) view.findViewById(R.id.startButton);
         endDate = (Button) view.findViewById(R.id.endButton);
         mSearchText = (AutoCompleteTextView) view.findViewById(R.id.hdf_input_search);
         mMapView  = view.findViewById(R.id.mapView);
+
 
         init();
 
@@ -237,6 +254,14 @@ public class HolidayDetailsFragment extends Fragment
     {
         Log.d(TAG, "Holiday Fragment Initialising");
 
+        //Construct a GeoDataClient.
+        mGeoDataClient = Places.getGeoDataClient(getActivity(),null);
+
+        //Construct a PlaceDetection Client .
+        mPlaceDetectionClient = Places.getPlaceDetectionClient(getActivity(), null);
+
+        //headerImage.setImageBitmap();
+
         titleField.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -307,6 +332,35 @@ public class HolidayDetailsFragment extends Fragment
                     //execute our method for searching
                     geoLocate();
                     hideSoftKeyboard();
+
+
+                    //TODO: Check the ImageView SetPic() method at the bottom of the class!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                    //Find Out how to set a bitmap....
+                    //InputStream is = getResources().openRawResource(mPlaceInfo.getPhotoRef());
+
+                    //headerImage.setImageBitmap(mPlaceInfo.getPhotoRef());
+
+                    int targetW = headerImage.getWidth();
+                    int targetH = headerImage.getHeight();
+
+                    BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+                    bmOptions.inJustDecodeBounds = true;
+                    int photoW = bmOptions.outWidth;
+                    int photoH = bmOptions.outHeight;
+
+                    int scaleFactor = 1;
+                    if ((targetW > 0) || (targetH > 0)) {
+                        scaleFactor = Math.min(photoW / targetW, photoH / targetH);
+                    }
+                    Log.i("AJB", "Scale factor is " + scaleFactor);
+
+                    bmOptions.inJustDecodeBounds = false;
+                    bmOptions.inSampleSize = scaleFactor;
+                    bmOptions.inPurgeable = true;
+
+                    Bitmap photoRef = BitmapFactory.decodeFile(mPlaceInfo.getPhotoRef(), bmOptions);
+
+                    headerImage.setImageBitmap(photoRef);
                 }
 
                 return false;
@@ -545,7 +599,7 @@ public class HolidayDetailsFragment extends Fragment
                 mPlaceInfo.setLatlng(place.getLatLng());
                 mPlaceInfo.setRating(place.getRating());
 
-                Log.d(TAG, "onReuslt: place: " + mPlaceInfo.toString());
+                Log.d(TAG, "onResult: place: " + mPlaceInfo.toString());
 
             }
             catch(NullPointerException e)
@@ -559,6 +613,94 @@ public class HolidayDetailsFragment extends Fragment
             places.release();
         }
     };
+
+    /**
+    private void getPhotos(String Id)
+    {
+        final String placeId;
+
+        if(Id == null)
+        {
+
+            placeId = mPlaceInfo.getId();
+        }
+        else
+        {
+            placeId = Id;
+        }
+
+        final Task<PlacePhotoMetadataResponse> photoMetadataResponse = mGeoDataClient.getPlacePhotos(placeId);
+        photoMetadataResponse.addOnCompleteListener(new OnCompleteListener<PlacePhotoMetadataResponse>()
+        {
+            @Override
+            public void onComplete(@NonNull Task<PlacePhotoMetadataResponse> task)
+            {
+                //Get the list of photos.
+                PlacePhotoMetadataResponse photos = task.getResult();
+
+                //Get the PlacePhotoMetadataBuffer (metadata for all of the photos)
+                PlacePhotoMetadataBuffer photoMetadataBuffer = photos.getPhotoMetadata();
+
+                // Get the first photo in the list.
+                PlacePhotoMetadata photoMetadata = photoMetadataBuffer.get(0);
+
+                //Get the attribution text.
+                CharSequence attribution = photoMetadata.getAttributions();
+
+                //Get a full-size bitmap for the photo.
+                Task<PlacePhotoResponse> photoResponse = mGeoDataClient.getPhoto(photoMetadata);
+                photoResponse.addOnCompleteListener(new OnCompleteListener<PlacePhotoResponse>() {
+                    @Override
+                    public void onComplete(@NonNull Task<PlacePhotoResponse> task) {
+                        PlacePhotoResponse photo = task.getResult();
+                        Bitmap bitmap = photo.getBitmap();
+                    }
+                });
+            }
+        });
+    }
+     */
+
+    private void getPhotos()
+    {
+
+        final String placeId = mPlaceInfo.getId();
+        final Task<PlacePhotoMetadataResponse> photoMetadataResponse = mGeoDataClient.getPlacePhotos(placeId);
+        photoMetadataResponse.addOnCompleteListener(new OnCompleteListener<PlacePhotoMetadataResponse>()
+        {
+            @Override
+            public void onComplete(@NonNull Task<PlacePhotoMetadataResponse> task)
+            {
+                //Get the list of photos.
+                PlacePhotoMetadataResponse photos = task.getResult();
+
+                //Get the PlacePhotoMetadataBuffer (metadata for all of the photos)
+                PlacePhotoMetadataBuffer photoMetadataBuffer = photos.getPhotoMetadata();
+
+                // Get the first photo in the list.
+                PlacePhotoMetadata photoMetadata = photoMetadataBuffer.get(0);
+
+                //Get the attribution text.
+                CharSequence attribution = photoMetadata.getAttributions();
+
+                //Get a full-size bitmap for the photo.
+                Task<PlacePhotoResponse> photoResponse = mGeoDataClient.getPhoto(photoMetadata);
+                photoResponse.addOnCompleteListener(new OnCompleteListener<PlacePhotoResponse>() {
+                    @Override
+                    public void onComplete(@NonNull Task<PlacePhotoResponse> task) {
+                        PlacePhotoResponse photo = task.getResult();
+                        Bitmap bitmap = photo.getBitmap();
+                        try {
+                            mPlaceInfo.setPhotoRef(bitmap);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+            }
+        });
+    }
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
