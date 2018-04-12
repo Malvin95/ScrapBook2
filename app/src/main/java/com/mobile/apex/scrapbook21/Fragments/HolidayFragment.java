@@ -114,7 +114,7 @@ public class HolidayFragment extends Fragment
     @Override
     public void FABClick() {
         //Toast.makeText(getContext(), "This the HolidayFragment FAB interaction!", Toast.LENGTH_LONG).show();
-        mListener.showHolidayDetailsFragment(new Holiday("title", "notes"), true);
+        mListener.showHolidayDetailsFragment(new Holiday("", "", ""), true);
 
     }
 

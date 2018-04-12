@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -13,97 +12,87 @@
     <ImageView
         android:id="@+id/header_image"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="80dp"
         android:layout_gravity="center"
         app:srcCompat="@drawable/cast_expanded_controller_bg_gradient_light" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_margin="5dp"
         android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Location: " />
+
+        <AutoCompleteTextView
+            android:id="@+id/hdf_input_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginVertical="5dp"
+            android:layout_toRightOf="@id/ic_magnify"
+            android:hint="Enter Address, City or Area Code"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:textColor="#000" />
 
         <EditText
             android:id="@+id/titleView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Holiday Name"
-            android:textColor="@android:color/darker_gray" />
+            android:hint="Holiday Name" />
 
         <EditText
             android:id="@+id/notesView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="100dp"
+            android:layout_marginTop="2dp"
             android:hint="Any Notes?"
-            android:textColor="@android:color/darker_gray" />
+            android:inputType="textMultiLine"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginVertical="20dp"
-        android:padding="10dp"
-        android:orientation="horizontal">
+        android:layout_marginVertical="5dp"
+        android:orientation="horizontal"
+        android:padding="10dp">
 
         <TextView
             android:id="@+id/start_text"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="@string/start_text"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:text="@string/start_text" />
 
         <Button
             android:id="@+id/startButton"
             android:layout_width="110dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="@string/start_text"
-            android:onClick="showDatePickerDialog" />
+            android:onClick="showDatePickerDialog"
+            android:text="@string/start_text" />
 
         <TextView
             android:id="@+id/end_text"
-            android:text="@string/end_text"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
             android:gravity="center"
-            android:layout_marginLeft="5dp"/>
+            android:text="@string/end_text" />
 
         <Button
             android:id="@+id/endButton"
             android:layout_width="110dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="@string/end_text"
-            android:onClick="showDatePickerDialog" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
-
-        <TextView
-            android:text="Location: "
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_marginLeft="5dp"/>
-
-        <AutoCompleteTextView
-            android:id="@+id/hdf_input_search"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@id/ic_magnify"
-            android:hint="Enter Address, City or Area Code"
-            android:imeOptions="actionSearch"
-            android:textColor="#000"
-            android:textSize="15sp"
-            android:inputType="text"
-            />
+            android:onClick="showDatePickerDialog"
+            android:text="@string/end_text" />
 
     </LinearLayout>
 
@@ -111,6 +100,7 @@
         android:id="@+id/mapView"
         android:layout_width="match_parent"
         android:layout_height="125dp"
-        android:layout_gravity="center|bottom"></com.google.android.gms.maps.MapView>
+        android:layout_gravity="center|bottom"
+        android:layout_marginTop="100dp"></com.google.android.gms.maps.MapView>
 
 </LinearLayout>

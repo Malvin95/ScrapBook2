@@ -16,14 +16,16 @@ public class Holiday implements Serializable {
     private String notes;
     private Calendar startDate;
     private Calendar endDate;
+    private String Location;
 
-    public Holiday(String title, String notes) {
+    public Holiday(String title, String notes, String location) {
         this.title = title;
         this.notes = notes;
         this.startDate = Calendar.getInstance();
         this.endDate = Calendar.getInstance();;
         //startDate = context.getString(R.string.start_date);
         //endDate = context.getString(R.string.end_date);
+        this.Location = location;
     }
 
     public int getId() {
@@ -105,5 +107,13 @@ public class Holiday implements Serializable {
 
         //return ""+day+"/"+month+"/"+year;
 
+    }
+
+    public String getLocation() {
+        return Location;
+    }
+
+    public void setLocation(String location) {
+        Location = location;
     }
 }

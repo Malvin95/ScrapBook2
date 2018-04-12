@@ -26,11 +26,11 @@ The code that gives permission for camera use, and for permission to
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:windowSoftInputMode="adjustPan"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:windowSoftInputMode="adjustPan">
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
@@ -69,7 +69,16 @@ The code that gives permission for camera use, and for permission to
 
         <activity
             android:name=".MapsActivity"
-            android:label="@string/title_activity_maps"></activity>
+            android:label="@string/title_activity_maps" />
+        <activity
+            android:name=".HolidayHomeTabbedActivity"
+            android:label="@string/title_activity_holiday_home_tabbed"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.mobile.apex.scrapbook21.MainActivity" />
+        </activity>
     </application>
 
 </manifest>
