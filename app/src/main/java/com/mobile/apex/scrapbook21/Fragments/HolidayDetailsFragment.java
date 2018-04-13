@@ -100,6 +100,8 @@ public class HolidayDetailsFragment extends Fragment
     private GoogleApiClient mGoogleApiClient;
     //private GeoDataApi mGeoDataAPI;
 
+    //------------------------------NORMAL VARIABLES --------------------------------\\
+
     private EditText titleField;
     private EditText notesField;
     private ImageView headerImage;

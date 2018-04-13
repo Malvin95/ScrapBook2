@@ -50,6 +50,7 @@ public class MyHolidayRecyclerViewAdapter extends RecyclerView.Adapter<MyHoliday
                     // fragment is attached to one) that an item has been selected.
                     Holiday item = holder.mItem;
                     mListener.showHolidayDetailsFragment(holder.mItem, false);
+                    //mListener.showHolidaySetFragment(holder.mItem, false);
                 }
             }
         });

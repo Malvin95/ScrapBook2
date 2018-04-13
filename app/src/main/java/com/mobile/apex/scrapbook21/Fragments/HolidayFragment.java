@@ -10,19 +10,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.DatePicker;
-import android.widget.Toast;
 
 import com.mobile.apex.scrapbook21.Adapters.MyHolidayRecyclerViewAdapter;
+import com.mobile.apex.scrapbook21.FABInterface;
 import com.mobile.apex.scrapbook21.R;
 import com.mobile.apex.scrapbook21.model.FABresponse;
 import com.mobile.apex.scrapbook21.model.Holiday;
 
 import com.mobile.apex.scrapbook21.model.HolidayData;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 //import com.mobile.apex.scrapbook21.dummy.DummyContent.DummyItem;
 
 /**
@@ -32,7 +28,8 @@ import java.util.Date;
  * interface.
  */
 public class HolidayFragment extends Fragment
-        implements FABresponse{
+        implements FABInterface,FABresponse
+{
 
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
@@ -118,6 +115,11 @@ public class HolidayFragment extends Fragment
 
     }
 
+    @Override
+    public void toggleFAB() {
+
+    }
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -131,7 +133,8 @@ public class HolidayFragment extends Fragment
     public interface OnHolidayFragmentInteractionListener {
         // TODO: Update argument type and name
         void showHolidayDetailsFragment(Holiday item, boolean useFAB);
-
+        void showHolidaySetFragment(Holiday item, boolean useFAB);
+        void onHolidayFragmentInteraction(Uri uri);
         void onFragmentInteraction(Uri uri);
     }
 }

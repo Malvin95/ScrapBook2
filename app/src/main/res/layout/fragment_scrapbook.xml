@@ -4,10 +4,17 @@
     android:layout_height="match_parent"
     tools:context="com.mobile.apex.scrapbook21.Fragments.ScrapbookFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <GridView
+        android:id="@+id/gridview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_weight="1"
+        android:columnWidth="@dimen/activity_horizontal_margin"
+        android:gravity="center"
+        android:horizontalSpacing="5dp"
+        android:numColumns="2"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="5dp"
+        android:layout_margin="3dp"/>
 
 </FrameLayout>

@@ -26,11 +26,15 @@ import android.view.View;
 import android.widget.Toast;
 import android.support.v4.app.Fragment;
 
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import com.google.android.gms.location.places.ui.PlacePicker;
 import com.mobile.apex.scrapbook21.Fragments.CalendarFragment;
 import com.mobile.apex.scrapbook21.Fragments.EventsFragment;
 import com.mobile.apex.scrapbook21.Fragments.HolidayDetailsFragment;
 import com.mobile.apex.scrapbook21.Fragments.HolidayFragment;
 import com.mobile.apex.scrapbook21.Fragments.HolidayHomeTabbedFragment;
+import com.mobile.apex.scrapbook21.Fragments.HolidaySetFragment;
 import com.mobile.apex.scrapbook21.Fragments.HomeFragment;
 import com.mobile.apex.scrapbook21.Fragments.MapsFragment;
 import com.mobile.apex.scrapbook21.Fragments.PhotoFragment;
@@ -55,7 +59,8 @@ public class MainActivity extends AppCompatActivity
         HolidayDetailsFragment.OnHolidayDetailsFragmentInteractionListener,
         PhotoFragment.OnPhotoFragmentInteractionListener,
         HolidayHomeTabbedFragment.OnHolidayHomeFragmentInteractionListener,
-        MapsFragment.OnMapsFragmentInteractionListener
+        MapsFragment.OnMapsFragmentInteractionListener,
+        HolidaySetFragment.OnHolidaySetFragmentInteractionListener
 {
 
     private String mCurrentPhotoPath;
@@ -219,8 +224,8 @@ public class MainActivity extends AppCompatActivity
         else if (id == R.id.nav_myHoliday)
         {
             // Handle the MyHoliday action.
-            HolidayFragment firstFragment = new HolidayFragment();
-                insertDefaultFragment(firstFragment);
+            HolidayHomeTabbedFragment firstFragment = new HolidayHomeTabbedFragment();
+            insertDefaultFragment(firstFragment);
         }
         else if (id == R.id.nav_calender)
         {
@@ -254,7 +259,7 @@ public class MainActivity extends AppCompatActivity
         else if (id == R.id.nav_promotional)
         {
             Toast.makeText(this, "I clicked the Promo option", Toast.LENGTH_LONG).show();
-            HolidayHomeTabbedFragment firstFragment = new HolidayHomeTabbedFragment();
+            HolidayFragment firstFragment = new HolidayFragment();
             insertDefaultFragment(firstFragment);
         }
         else if (id == R.id.nav_faqs)
@@ -296,6 +301,11 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
+    public void showHolidaySetFragment(Holiday item, boolean useFAB) {
+
+    }
+
+    @Override
     public void onHomeFragmentInteraction(Uri uri) {
         Toast.makeText(this, "You clicked Home", Toast.LENGTH_LONG).show();
     }
@@ -316,7 +326,11 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    //TODO: Find what this would be used by and for!
+    public void onHolidayFragmentInteraction(Uri uri) {
+
+    }
+
+    @Override
     public void onFragmentInteraction(Uri uri) {
 
     }
@@ -343,6 +357,11 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onMapsFragmentInteraction(Uri uri) {
+
+    }
+
+    @Override
+    public void onHolidaySetInteraction(Uri uri) {
 
     }
 
