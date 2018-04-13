@@ -250,8 +250,6 @@ public class MainActivity extends AppCompatActivity
         else if (id == R.id.nav_promotional)
         {
             Toast.makeText(this, "I clicked the Promo option", Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(this, HolidayHomeTabbedActivity.class);
-            startActivity(intent);
         }
         else if (id == R.id.nav_faqs)
         {
@@ -265,7 +263,7 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
-    }
+}
 
     @Override
     public void showHolidayDetailsFragment(Holiday item, boolean useFAB)
