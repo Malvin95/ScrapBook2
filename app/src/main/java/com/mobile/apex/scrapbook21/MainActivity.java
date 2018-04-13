@@ -30,7 +30,9 @@ import com.mobile.apex.scrapbook21.Fragments.CalendarFragment;
 import com.mobile.apex.scrapbook21.Fragments.EventsFragment;
 import com.mobile.apex.scrapbook21.Fragments.HolidayDetailsFragment;
 import com.mobile.apex.scrapbook21.Fragments.HolidayFragment;
+import com.mobile.apex.scrapbook21.Fragments.HolidayHomeTabbedFragment;
 import com.mobile.apex.scrapbook21.Fragments.HomeFragment;
+import com.mobile.apex.scrapbook21.Fragments.MapsFragment;
 import com.mobile.apex.scrapbook21.Fragments.PhotoFragment;
 import com.mobile.apex.scrapbook21.Fragments.ScrapbookFragment;
 import com.mobile.apex.scrapbook21.model.FABresponse;
@@ -51,7 +53,9 @@ public class MainActivity extends AppCompatActivity
         ScrapbookFragment.OnScrapbookFragmentInteractionListener,
         EventsFragment.OnEventsFragmentInteractionListener,
         HolidayDetailsFragment.OnHolidayDetailsFragmentInteractionListener,
-        PhotoFragment.OnPhotoFragmentInteractionListener
+        PhotoFragment.OnPhotoFragmentInteractionListener,
+        HolidayHomeTabbedFragment.OnHolidayHomeFragmentInteractionListener,
+        MapsFragment.OnMapsFragmentInteractionListener
 {
 
     private String mCurrentPhotoPath;
@@ -250,6 +254,8 @@ public class MainActivity extends AppCompatActivity
         else if (id == R.id.nav_promotional)
         {
             Toast.makeText(this, "I clicked the Promo option", Toast.LENGTH_LONG).show();
+            HolidayHomeTabbedFragment firstFragment = new HolidayHomeTabbedFragment();
+            insertDefaultFragment(firstFragment);
         }
         else if (id == R.id.nav_faqs)
         {
@@ -328,6 +334,16 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onHolidayDetailsInteraction(Uri uri) {
         Toast.makeText(this, "You clicked Events", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onHolidayHomeFragmentInteraction(Uri uri) {
+
+    }
+
+    @Override
+    public void onMapsFragmentInteraction(Uri uri) {
+
     }
 
     @Override

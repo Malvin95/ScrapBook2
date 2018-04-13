@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,50 +8,105 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.mobile.apex.scrapbook21.MainActivity">
     <!-- tools:showIn="@layout/activity_main"> -->
-
-    <EditText
-        android:id="@+id/titleView"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="5dp"
-        android:hint="Name your Holiday"
-        android:textColorHint="#797979"
-        android:inputType="text|number" />
+        android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/notesView"
+        <ImageView
+            android:id="@+id/header_image"
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:id="@+id/titleView"
+            android:layout_marginHorizontal="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:hint="What do you plan to do?"
-        android:textColorHint="#797979"
-        android:inputType="text|number" />
+        android:layout_margin="5dp"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/startText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/start_text"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Location: " />
 
-    <Button
-        android:id="@+id/startDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:hint="@string/start_date" />
+        <TextView
+            android:id="@+id/hdf_input_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginVertical="5dp"
+            android:layout_toRightOf="@id/ic_magnify"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:textColor="#000" />
+    </LinearLayout>
 
-    <TextView
-        android:id="@+id/endText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/end_text" />
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
 
-    <Button
-        android:id="@+id/endDate"
-        android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/notesView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="5dp"
+            android:layout_marginVertical="5dp"
+            android:inputType="textMultiLine"/>
+
+
+    </android.support.v4.widget.NestedScrollView>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/end_date"
-        android:gravity="end" />
+        android:layout_gravity="center"
+        android:layout_marginVertical="5dp"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/start_text"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="5dp"
+            android:gravity="center"
+            android:text="@string/start_text" />
+
+        <TextView
+            android:id="@+id/startButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="5dp"
+            android:gravity="center"
+            android:text="@string/start_text" />
+
+        <TextView
+            android:id="@+id/end_text"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="5dp"
+            android:gravity="center"
+            android:text="@string/end_text" />
+
+        <TextView
+            android:id="@+id/endButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="5dp"
+            android:layout_gravity="center"
+            android:text="@string/end_text" />
+
+    </LinearLayout>
 
 </LinearLayout>
