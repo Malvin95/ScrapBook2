@@ -12,8 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AutoCompleteTextView;
-import android.widget.TableLayout;
-import android.widget.Toast;
 
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -21,22 +19,16 @@ import com.google.android.gms.location.places.GeoDataClient;
 import com.google.android.gms.location.places.PlaceDetectionClient;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.mobile.apex.scrapbook21.Adapters.PlacesAutoCompleteAdapter;
 import com.mobile.apex.scrapbook21.FABInterface;
 import com.mobile.apex.scrapbook21.R;
-import com.mobile.apex.scrapbook21.model.FABresponse;
+import com.mobile.apex.scrapbook21.FABresponse;
 import com.mobile.apex.scrapbook21.model.Holiday;
-import com.mobile.apex.scrapbook21.model.HolidayData;
 import com.mobile.apex.scrapbook21.model.PlaceInfo;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static android.widget.Toast.LENGTH_LONG;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -46,8 +38,7 @@ import static android.widget.Toast.LENGTH_LONG;
  * Use the {@link HolidayHomeTabbedFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class HolidayHomeTabbedFragment extends Fragment
-        implements FABresponse
+public class HolidayHomeTabbedFragment extends Fragment implements FABInterface, FABresponse
 {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -133,9 +124,9 @@ public class HolidayHomeTabbedFragment extends Fragment
     private void setupViewPager(ViewPager viewPager)
     {
         SectionsPageAdapter adapter = new SectionsPageAdapter(getChildFragmentManager());
-        adapter.addFragment(new MapsFragment(), "Around Me");
+        adapter.addFragment(new HomeFragment(), "Home");
         adapter.addFragment(new HolidayFragment(), "My Holidays");
-        adapter.addFragment(new ScrapbookFragment(), "Scrapbook");
+        adapter.addFragment(new MapsFragment(), "World View");
         viewPager.setAdapter(adapter);
     }
 
@@ -161,6 +152,11 @@ public class HolidayHomeTabbedFragment extends Fragment
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void toggleFAB() {
+
     }
 
     public static class SectionsPageAdapter extends FragmentPagerAdapter
@@ -208,7 +204,7 @@ public class HolidayHomeTabbedFragment extends Fragment
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnHolidayHomeFragmentInteractionListener {
+    public interface OnHolidayHomeFragmentInteractionListener extends FABInterface {
         // TODO: Update argument type and name
         void showHolidayDetailsFragment(Holiday item, boolean useFAB);
         void onHolidayHomeFragmentInteraction(Uri uri);

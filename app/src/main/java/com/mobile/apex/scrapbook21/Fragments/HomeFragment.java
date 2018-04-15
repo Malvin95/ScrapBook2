@@ -98,7 +98,7 @@ public class HomeFragment extends Fragment {
     public void onResume()
     {
         super.onResume();
-        mListener.toggleFAB();
+        //mListener.toggleFAB();
     }
 
 
@@ -106,7 +106,7 @@ public class HomeFragment extends Fragment {
     public void onPause()
     {
         super.onPause();
-        mListener.toggleFAB();
+        //mListener.toggleFAB();
     }
 
     /**

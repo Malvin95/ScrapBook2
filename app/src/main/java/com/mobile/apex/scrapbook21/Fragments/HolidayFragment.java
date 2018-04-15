@@ -12,9 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.mobile.apex.scrapbook21.Adapters.MyHolidayRecyclerViewAdapter;
-import com.mobile.apex.scrapbook21.FABInterface;
 import com.mobile.apex.scrapbook21.R;
-import com.mobile.apex.scrapbook21.model.FABresponse;
 import com.mobile.apex.scrapbook21.model.Holiday;
 
 import com.mobile.apex.scrapbook21.model.HolidayData;
@@ -28,7 +26,7 @@ import com.mobile.apex.scrapbook21.model.HolidayData;
  * interface.
  */
 public class HolidayFragment extends Fragment
-        implements FABInterface,FABresponse
+        /**implements FABInterface,FABresponse*/
 {
 
     // TODO: Customize parameter argument names
@@ -107,7 +105,7 @@ public class HolidayFragment extends Fragment
             mListener.onFragmentInteraction(uri);
         }
     }
-
+    /**
     @Override
     public void FABClick() {
         //Toast.makeText(getContext(), "This the HolidayFragment FAB interaction!", Toast.LENGTH_LONG).show();
@@ -118,7 +116,7 @@ public class HolidayFragment extends Fragment
     @Override
     public void toggleFAB() {
 
-    }
+    }*/
 
     /**
      * This interface must be implemented by activities that contain this
@@ -130,7 +128,7 @@ public class HolidayFragment extends Fragment
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnHolidayFragmentInteractionListener {
+    public interface OnHolidayFragmentInteractionListener{
         // TODO: Update argument type and name
         void showHolidayDetailsFragment(Holiday item, boolean useFAB);
         void showHolidaySetFragment(Holiday item, boolean useFAB);

@@ -5,14 +5,11 @@
     tools:context="com.mobile.apex.scrapbook21.Fragments.CalendarFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 
     <CalendarView
         android:id="@+id/calendarView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"/>
+        android:layout_height="306dp"
+        android:layout_gravity="center|top" />
 
 </FrameLayout>

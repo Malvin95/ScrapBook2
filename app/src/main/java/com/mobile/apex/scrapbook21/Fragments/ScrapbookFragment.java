@@ -16,7 +16,6 @@ import android.widget.Toast;
 import com.mobile.apex.scrapbook21.Adapters.ImageAdapter;
 import com.mobile.apex.scrapbook21.FABInterface;
 import com.mobile.apex.scrapbook21.R;
-import com.mobile.apex.scrapbook21.model.FABresponse;
 
 import java.io.File;
 import java.util.ArrayList;

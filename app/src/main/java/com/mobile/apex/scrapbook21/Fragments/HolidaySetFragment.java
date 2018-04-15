@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mobile.apex.scrapbook21.R;
-import com.mobile.apex.scrapbook21.model.FABresponse;
+import com.mobile.apex.scrapbook21.FABresponse;
 import com.mobile.apex.scrapbook21.model.Holiday;
 import com.mobile.apex.scrapbook21.model.HolidayData;
 

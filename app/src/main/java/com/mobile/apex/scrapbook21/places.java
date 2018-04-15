@@ -1,3 +1,5 @@
+package com.mobile.apex.scrapbook21;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,7 +13,6 @@ import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlaceAutocomplete;
-import com.mobile.apex.scrapbook21.R;
 
 import static android.content.ContentValues.TAG;
 

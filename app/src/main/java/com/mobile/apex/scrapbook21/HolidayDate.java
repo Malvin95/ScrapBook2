@@ -1,3 +1,5 @@
+package com.mobile.apex.scrapbook21;
+
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

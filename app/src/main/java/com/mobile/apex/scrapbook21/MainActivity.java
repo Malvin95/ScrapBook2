@@ -26,9 +26,6 @@ import android.view.View;
 import android.widget.Toast;
 import android.support.v4.app.Fragment;
 
-import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
-import com.google.android.gms.common.GooglePlayServicesRepairableException;
-import com.google.android.gms.location.places.ui.PlacePicker;
 import com.mobile.apex.scrapbook21.Fragments.CalendarFragment;
 import com.mobile.apex.scrapbook21.Fragments.EventsFragment;
 import com.mobile.apex.scrapbook21.Fragments.HolidayDetailsFragment;
@@ -39,7 +36,6 @@ import com.mobile.apex.scrapbook21.Fragments.HomeFragment;
 import com.mobile.apex.scrapbook21.Fragments.MapsFragment;
 import com.mobile.apex.scrapbook21.Fragments.PhotoFragment;
 import com.mobile.apex.scrapbook21.Fragments.ScrapbookFragment;
-import com.mobile.apex.scrapbook21.model.FABresponse;
 import com.mobile.apex.scrapbook21.model.Holiday;
 
 import java.io.File;
@@ -125,7 +121,7 @@ public class MainActivity extends AppCompatActivity
 
         //TODO: change the Holiday fragment from being the first page, change this to Home Fragment.
         //Create a new Fragment to be placed in the activity layout
-        HomeFragment firstFragment = new HomeFragment();
+        HolidayHomeTabbedFragment firstFragment = new HolidayHomeTabbedFragment();
         insertDefaultFragment(firstFragment);
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -215,13 +211,7 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_home)
-        {
-            // Handle the home action.
-            HomeFragment firstFragment = new HomeFragment();
-                insertDefaultFragment(firstFragment);
-        }
-        else if (id == R.id.nav_myHoliday)
+        if (id == R.id.nav_myHoliday)
         {
             // Handle the MyHoliday action.
             HolidayHomeTabbedFragment firstFragment = new HolidayHomeTabbedFragment();
@@ -240,7 +230,7 @@ public class MainActivity extends AppCompatActivity
             ScrapbookFragment firstFragment = new ScrapbookFragment();
                 insertDefaultFragment(firstFragment);
         }
-        else if (id == R.id.nav_worldView)
+        else if (id == R.id.nav_nearMe)
         {
             /**Toast.makeText(this, "I clicked the WorldView option", Toast.LENGTH_LONG).show();
             WorldViewFragment worldViewFragment = new WorldViewFragment();
@@ -255,16 +245,6 @@ public class MainActivity extends AppCompatActivity
             //Toast.makeText(this, "I clicked the Events option", Toast.LENGTH_LONG).show();
             PhotoFragment firstFragment = new PhotoFragment();
             insertDefaultFragment(firstFragment);
-        }
-        else if (id == R.id.nav_promotional)
-        {
-            Toast.makeText(this, "I clicked the Promo option", Toast.LENGTH_LONG).show();
-            HolidayFragment firstFragment = new HolidayFragment();
-            insertDefaultFragment(firstFragment);
-        }
-        else if (id == R.id.nav_faqs)
-        {
-            Toast.makeText(this, "I clicked the FAQS option", Toast.LENGTH_LONG).show();
         }
         else if (id == R.id.nav_settings)
         {
